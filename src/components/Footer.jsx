@@ -53,7 +53,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t-2 border-[#002244] bg-[#003366] text-white pt-14 pb-8 mt-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* TOP BRAND & INFO ROW */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-10 border-b border-[#084d8c]/70">
           <div className="lg:col-span-4 space-y-4">

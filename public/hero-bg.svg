@@ -1,0 +1,124 @@
+<svg width="1440" height="700" viewBox="0 0 1440 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Soft Cyan/Blue Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e3effd" />
+      <stop offset="60%" stop-color="#eff6fe" />
+      <stop offset="100%" stop-color="#ffffff" />
+    </linearGradient>
+
+    <!-- Center Radial Glow -->
+    <radialGradient id="center-glow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#60a5fa" stop-opacity="0.3" />
+      <stop offset="60%" stop-color="#93c5fd" stop-opacity="0.1" opacity="0.5" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Glowing Beam Line Gradient -->
+    <linearGradient id="beam-line-1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.1" />
+      <stop offset="50%" stop-color="#2563eb" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.1" />
+    </linearGradient>
+
+    <!-- Badge Card Shadow -->
+    <filter id="card-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+
+    <filter id="glow-blur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="30" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1440" height="700" fill="url(#bg-grad)" />
+
+  <!-- Ambient Glow Behind Hero Card -->
+  <ellipse cx="720" cy="320" rx="450" ry="240" fill="url(#center-glow)" filter="url(#glow-blur)" />
+
+  <!-- Concentric Orbit Rings (Time Cycles: Years, Months, Days, Hours) -->
+  <g opacity="0.35">
+    <ellipse cx="720" cy="320" rx="640" ry="260" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="8 10" />
+    <ellipse cx="720" cy="320" rx="480" ry="190" stroke="#60a5fa" stroke-width="1.2" stroke-dasharray="6 8" />
+    <ellipse cx="720" cy="320" rx="320" ry="130" stroke="#93c5fd" stroke-width="1" stroke-dasharray="4 6" />
+  </g>
+
+  <!-- Network Interconnection Lines -->
+  <path d="M220 180 Q470 100 720 140" stroke="url(#beam-line-1)" stroke-width="2" stroke-dasharray="6 6" />
+  <path d="M720 140 Q970 90 1220 180" stroke="url(#beam-line-1)" stroke-width="2" stroke-dasharray="6 6" />
+  <path d="M180 380 Q450 460 720 400" stroke="url(#beam-line-1)" stroke-width="1.5" stroke-dasharray="4 6" />
+  <path d="M720 400 Q990 460 1260 380" stroke="url(#beam-line-1)" stroke-width="1.5" stroke-dasharray="4 6" />
+
+  <!-- Floating 3D Time Badges / Chips -->
+
+  <!-- Top Left: 📅 Date of Birth Chip -->
+  <g transform="translate(180, 140)" filter="url(#card-shadow)">
+    <rect x="0" y="0" width="160" height="48" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+    <rect x="10" y="10" width="28" height="28" rx="8" fill="#eff6ff" />
+    <text x="24" y="28" font-family="Plus Jakarta Sans, sans-serif" font-size="14" text-anchor="middle" fill="#2563eb">📅</text>
+    <text x="48" y="24" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Date of Birth</text>
+    <text x="48" y="36" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="500" fill="#64748b">Exact DOB Math</text>
+  </g>
+
+  <!-- Top Right: ⏱️ Real-Time Math Chip -->
+  <g transform="translate(1080, 140)" filter="url(#card-shadow)">
+    <rect x="0" y="0" width="170" height="48" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+    <rect x="10" y="10" width="28" height="28" rx="8" fill="#eff6ff" />
+    <text x="24" y="28" font-family="Plus Jakarta Sans, sans-serif" font-size="14" text-anchor="middle" fill="#2563eb">⏱️</text>
+    <text x="48" y="24" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Real-Time Results</text>
+    <text x="48" y="36" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="500" fill="#64748b">Instant Lifetime Units</text>
+  </g>
+
+  <!-- Middle Left: 🌍 Leap Year Accuracy Chip -->
+  <g transform="translate(120, 290)" filter="url(#card-shadow)">
+    <rect x="0" y="0" width="165" height="48" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+    <rect x="10" y="10" width="28" height="28" rx="8" fill="#eff6ff" />
+    <text x="24" y="28" font-family="Plus Jakarta Sans, sans-serif" font-size="14" text-anchor="middle" fill="#2563eb">🌍</text>
+    <text x="48" y="24" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Leap Year Math</text>
+    <text x="48" y="36" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="500" fill="#64748b">365 / 366 Days Shift</text>
+  </g>
+
+  <!-- Middle Right: 🎂 Next Birthday Countdown Chip -->
+  <g transform="translate(1145, 290)" filter="url(#card-shadow)">
+    <rect x="0" y="0" width="175" height="48" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+    <rect x="10" y="10" width="28" height="28" rx="8" fill="#eff6ff" />
+    <text x="24" y="28" font-family="Plus Jakarta Sans, sans-serif" font-size="14" text-anchor="middle" fill="#2563eb">🎂</text>
+    <text x="48" y="24" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Next Birthday</text>
+    <text x="48" y="36" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="500" fill="#64748b">Countdown & Weekday</text>
+  </g>
+
+  <!-- Bottom Left: 🔒 100% Private & Client-Side Chip -->
+  <g transform="translate(160, 440)" filter="url(#card-shadow)">
+    <rect x="0" y="0" width="165" height="48" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+    <rect x="10" y="10" width="28" height="28" rx="8" fill="#eff6ff" />
+    <text x="24" y="28" font-family="Plus Jakarta Sans, sans-serif" font-size="14" text-anchor="middle" fill="#2563eb">🔒</text>
+    <text x="48" y="24" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#0f172a">100% Private</text>
+    <text x="48" y="36" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="500" fill="#64748b">Zero Server Storage</text>
+  </g>
+
+  <!-- Bottom Right: ⚡ Instant Calculations Chip -->
+  <g transform="translate(1100, 440)" filter="url(#card-shadow)">
+    <rect x="0" y="0" width="170" height="48" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" />
+    <rect x="10" y="10" width="28" height="28" rx="8" fill="#eff6ff" />
+    <text x="24" y="28" font-family="Plus Jakarta Sans, sans-serif" font-size="14" text-anchor="middle" fill="#2563eb">⚡</text>
+    <text x="48" y="24" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Instant Math</text>
+    <text x="48" y="36" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="500" fill="#64748b">Seconds & Minutes</text>
+  </g>
+
+  <!-- Glowing Constellation Nodes -->
+  <circle cx="260" cy="164" r="5" fill="#2563eb" />
+  <circle cx="260" cy="164" r="9" fill="#3b82f6" opacity="0.25" />
+
+  <circle cx="1160" cy="164" r="5" fill="#2563eb" />
+  <circle cx="1160" cy="164" r="9" fill="#3b82f6" opacity="0.25" />
+
+  <circle cx="202" cy="314" r="5" fill="#2563eb" />
+  <circle cx="202" cy="314" r="9" fill="#3b82f6" opacity="0.25" />
+
+  <circle cx="1230" cy="314" r="5" fill="#2563eb" />
+  <circle cx="1230" cy="314" r="9" fill="#3b82f6" opacity="0.25" />
+
+  <!-- Smooth Upward Curved Wave Bottom Arc (White Page Divider) -->
+  <path d="M0 640 Q720 720 1440 640 L1440 700 L0 700 Z" fill="#f8fafc" />
+</svg>

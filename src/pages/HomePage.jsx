@@ -8,7 +8,8 @@ import {
   Sparkles,
   Baby,
   Activity,
-  CalendarCheck
+  CalendarCheck,
+  ShieldCheck
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -78,6 +79,14 @@ export default function HomePage() {
     const nextBdayFormatted = nextBday.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
     const turningAge = nextBdayYear - bY;
 
+    const birthShortFormatted = birth.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    const targetShortFormatted = target.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+    const currentTotalYears = years + (months / 12) + (days / 365.25);
+    const nextMilestoneAge = Math.ceil((years + 1) / 10) * 10;
+    const prevMilestoneAge = Math.max(0, nextMilestoneAge - 10);
+    const milestonePercent = Math.min(100, Math.max(0, Math.round(((currentTotalYears - prevMilestoneAge) / (nextMilestoneAge - prevMilestoneAge)) * 100)));
+
     return {
       isInvalid: false,
       years,
@@ -94,7 +103,12 @@ export default function HomePage() {
       nextBdayDays,
       nextBdayWeeks,
       nextBdayWeekday,
-      turningAge
+      turningAge,
+      birthShortFormatted,
+      targetShortFormatted,
+      nextMilestoneAge,
+      prevMilestoneAge,
+      milestonePercent
     };
   }, [birthDate, birthTime, hasBirthTime, compareDate]);
 
@@ -114,229 +128,339 @@ export default function HomePage() {
   };
 
   return (
-    <div className="space-y-12">
-      {/* Top Banner with Quick Example Button */}
-      <div className="flex justify-end">
-        <button 
-          onClick={loadJohnExample}
-          className="px-3.5 py-1.5 rounded bg-calcNavy hover:bg-calcNavy-light text-white text-xs font-semibold border border-blue-400/40 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-          Load John's Example (Doc Example)
-        </button>
-      </div>
-
-      {/* HERO SECTION */}
-      <section className="space-y-3 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Title: Age Calculator – Find Your Exact Age in Years, Months & Days
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Age Calculator – Find Out Exactly How Old You Are
-        </h1>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Calculate your exact age from your date of birth. Enter your birth date and today's date to find your age in years, months, and days. You can also see your total age in weeks, days, hours, minutes, and seconds, along with the date of your next birthday.
-        </p>
-        <p className="text-slate-600 text-xs sm:text-sm leading-relaxed pt-1">
-          Ever wondered exactly how old you are—not just in years, but in months, days, or even seconds? Our free online age calculator gives you an instant, accurate answer. Just enter your date of birth and the date you want to calculate your age on, and the calculator does the rest.
-        </p>
-      </section>
-
-      {/* INTERACTIVE CALCULATOR WIDGET */}
-      <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
-        <div className="border-b border-slate-200 pb-4 mb-6 flex items-center justify-between">
-          <h2 className="text-xl font-bold text-calcNavy-dark flex items-center gap-2">
-            <Calculator className="w-5 h-5 text-calcNavy" />
-            Age Calculator
-          </h2>
-          <span className="text-xs text-slate-500 font-medium">Free & Precise</span>
+    <div className="w-full">
+      {/* HERO SECTION CONTAINER - Soft Blue Gradient with World Map & Avatar Nodes Overlay */}
+      <section className="relative bg-gradient-to-b from-[#e3effd] via-[#edf5fe] to-[#ffffff] pt-12 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        
+        {/* Hero Background Image from public folder (Gemini Generated Image) */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+          <img 
+            src="/Gemini_Generated_Image_psasqcpsasqcpsas.jpg" 
+            alt="Hero Background" 
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Subtle soft white gradient overlay for readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/20 to-white/70"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Curved Wave Arc Bottom Boundary (Exact Arc Curve from Screenshot!) */}
+        <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none z-0 pointer-events-none">
+          <svg className="relative block w-full h-12 sm:h-20 text-[#f8fafc]" viewBox="0 0 1200 120" preserveAspectRatio="none" fill="currentColor">
+            <path d="M0,0 Q600,110 1200,0 L1200,120 L0,120 Z"></path>
+          </svg>
+        </div>
+
+        <div className="max-w-[1200px] mx-auto space-y-6 relative z-10">
           
-          {/* Input Form Controls */}
-          <div className="lg:col-span-5 space-y-4 bg-[#f8fafc] border border-slate-200 p-5 sm:p-6 rounded-xl">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200">
-              <span className="font-bold text-sm text-calcNavy flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-calcNavy" />
-                Date Input
-              </span>
-              <span className="text-xs text-slate-500 font-medium">Step 1 & 2</span>
-            </div>
+          {/* Centered H1 Title & Subtitle (Clean & Bold like Screenshot!) */}
+          <div className="text-center space-y-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight max-w-3xl mx-auto">
+              Age Calculator – Find Out Exactly How Old You Are
+            </h1>
 
-            {/* Birth Date */}
-            <div className="space-y-1.5">
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide">
-                Date of Birth
-              </label>
-              <input
-                type="date"
-                value={birthDate}
-                onChange={(e) => setBirthDate(e.target.value)}
-                className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-calcBlue focus:border-transparent transition-all shadow-inner"
-              />
-            </div>
+            <p className="text-slate-600 text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-normal">
+              Calculate your exact age from your date of birth instantly with our accurate, privacy-focused tool.
+            </p>
 
-            {/* Optional Birth Time */}
-            <div className="space-y-2 pt-1">
-              <label className="flex items-center justify-between text-xs text-slate-700 cursor-pointer select-none">
-                <span className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    checked={hasBirthTime}
-                    onChange={(e) => setHasBirthTime(e.target.checked)}
-                    className="w-3.5 h-3.5 rounded border-slate-300 text-calcGreen focus:ring-calcGreen"
-                  />
-                  Include Exact Birth Time
-                </span>
-                {hasBirthTime && <span className="text-[11px] text-calcBlue font-medium">Optional</span>}
-              </label>
-              {hasBirthTime && (
-                <input
-                  type="time"
-                  value={birthTime}
-                  onChange={(e) => setBirthTime(e.target.value)}
-                  className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-calcBlue transition-all"
-                />
-              )}
-            </div>
-
-            {/* Compare Date */}
-            <div className="space-y-1.5 pt-1">
-              <div className="flex items-center justify-between">
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide">
-                  Date to Compare
-                </label>
-                <button
-                  onClick={setTodayCompareDate}
-                  className="text-[11px] text-calcBlue hover:underline font-semibold"
-                >
-                  Set to Today
-                </button>
-              </div>
-              <input
-                type="date"
-                value={compareDate}
-                onChange={(e) => setCompareDate(e.target.value)}
-                className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-calcBlue focus:border-transparent transition-all shadow-inner"
-              />
-            </div>
-
-            {/* Signature Calculator.net Green Calculate Button */}
-            <div className="pt-2">
-              <button
-                type="button"
-                className="w-full py-2.5 bg-calcGreen hover:bg-calcGreen-hover text-white text-base font-bold rounded-lg shadow transition-colors flex items-center justify-center gap-2 cursor-default"
+            {/* Quick Example Button */}
+            <div className="pt-1 flex items-center justify-center gap-3">
+              <button 
+                onClick={loadJohnExample}
+                className="px-3.5 py-1.5 rounded-xl bg-white/90 hover:bg-white text-blue-700 text-xs font-bold border border-blue-200/80 transition-all flex items-center gap-2 shadow-xs hover:shadow-sm"
               >
-                <Calculator className="w-5 h-5" />
-                Calculate Age
+                <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                Load John's Example (1997 → 2026)
               </button>
             </div>
           </div>
 
-          {/* Results Display Area */}
-          <div className="lg:col-span-7 space-y-4">
-            {calculationResult && !calculationResult.isInvalid ? (
-              <>
-                {/* Primary Result Box */}
-                <div className="bg-calcGreen-light border border-calcGreen-border rounded-xl p-5 shadow-sm">
-                  <div className="text-xs font-bold uppercase tracking-wider text-calcGreen mb-1 flex items-center justify-between">
-                    <span>Exact Age Result</span>
-                    <span className="text-[11px] font-normal text-slate-500">Step 3 & 4</span>
+          {/* FLOATING 50/50 WHITE HERO CARD (Width compact max-w-[1000px] centered) */}
+          <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-200/90 p-5 sm:p-7 relative z-20 transition-all max-w-[1000px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+              
+              {/* LEFT 50% COLUMN (lg:col-span-6): Header + Inputs + Calculate Button */}
+              <div className="lg:col-span-6 flex flex-col justify-between space-y-4 lg:border-r lg:border-slate-100 lg:pr-6">
+                
+                {/* Title & Badge */}
+                <div className="flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0 shadow-xs mt-0.5">
+                    <Calendar className="w-4.5 h-4.5" />
                   </div>
-
-                  <div className="text-2xl sm:text-3xl font-extrabold text-calcNavy-dark my-2">
-                    {calculationResult.years} <span className="text-sm font-semibold text-slate-600">years</span>, {calculationResult.months} <span className="text-sm font-semibold text-slate-600">months</span>, {calculationResult.days} <span className="text-sm font-semibold text-slate-600">days</span>
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-2 text-center mt-3 pt-3 border-t border-calcGreen-border/60">
-                    <div className="bg-white/80 border border-calcGreen-border/80 rounded p-2">
-                      <div className="text-xl sm:text-2xl font-black text-calcGreen">
-                        {calculationResult.years}
-                      </div>
-                      <div className="text-[11px] font-semibold text-slate-600 uppercase">Years</div>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h2 className="text-lg font-extrabold text-slate-900 tracking-tight">Confirm Your Age</h2>
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-600 border border-emerald-100">
+                        <ShieldCheck className="w-3 h-3" /> 100% Free & Private
+                      </span>
                     </div>
-                    <div className="bg-white/80 border border-calcGreen-border/80 rounded p-2">
-                      <div className="text-xl sm:text-2xl font-black text-calcGreen">
-                        {calculationResult.months}
-                      </div>
-                      <div className="text-[11px] font-semibold text-slate-600 uppercase">Months</div>
-                    </div>
-                    <div className="bg-white/80 border border-calcGreen-border/80 rounded p-2">
-                      <div className="text-xl sm:text-2xl font-black text-calcGreen">
-                        {calculationResult.days}
-                      </div>
-                      <div className="text-[11px] font-semibold text-slate-600 uppercase">Days</div>
-                    </div>
+                    <p className="text-xs text-slate-400 font-medium mt-0.5">Select birth & comparison dates</p>
                   </div>
                 </div>
 
-                {/* Next Birthday Box */}
-                <div className="bg-calcBlue-light border border-blue-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-calcBlue text-white flex items-center justify-center shrink-0">
-                      <CalendarCheck className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-calcNavy-dark">Next Birthday</div>
-                      <div className="text-xs text-slate-600">
-                        {calculationResult.nextBdayFormatted} (in {calculationResult.nextBdayDays} days, turning {calculationResult.turningAge})
-                      </div>
-                    </div>
+                {/* Form Inputs - 1 Column Stacked */}
+                <div className="space-y-3 pt-1">
+                  {/* DOB */}
+                  <div className="space-y-1">
+                    <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                      DATE OF BIRTH
+                    </label>
+                    <input
+                      type="date"
+                      value={birthDate}
+                      onChange={(e) => setBirthDate(e.target.value)}
+                      className="w-full bg-slate-50/80 border border-slate-200 hover:border-blue-400 focus:border-blue-600 focus:bg-white rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
+                    />
                   </div>
-                  <div className="text-xs font-semibold text-calcNavy bg-white px-3 py-1 rounded border border-blue-200 shadow-sm shrink-0">
-                    Falls on a {calculationResult.nextBdayWeekday}
+
+                  {/* Date to Compare */}
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between">
+                      <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                        DATE TO COMPARE
+                      </label>
+                      <button
+                        onClick={setTodayCompareDate}
+                        className="text-[10px] text-blue-600 hover:text-blue-800 font-bold hover:underline"
+                      >
+                        Set to Today
+                      </button>
+                    </div>
+                    <input
+                      type="date"
+                      value={compareDate}
+                      onChange={(e) => setCompareDate(e.target.value)}
+                      className="w-full bg-slate-50/80 border border-slate-200 hover:border-blue-400 focus:border-blue-600 focus:bg-white rounded-xl px-3.5 py-2.5 text-xs font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all"
+                    />
                   </div>
+
+                  {/* Exact Birth Time Checkbox */}
+                  <div className="flex items-center gap-2 pt-1">
+                    <input
+                      type="checkbox"
+                      id="birth-time-toggle"
+                      checked={hasBirthTime}
+                      onChange={(e) => setHasBirthTime(e.target.checked)}
+                      className="w-4 h-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                    />
+                    <label htmlFor="birth-time-toggle" className="text-xs font-medium text-slate-500 cursor-pointer select-none">
+                      Exact Birth Time <span className="text-slate-400">(Optional)</span>
+                    </label>
+                  </div>
+
+                  {hasBirthTime && (
+                    <div className="bg-blue-50/50 border border-blue-100 rounded-xl p-2.5 flex items-center gap-3">
+                      <label className="text-xs font-bold text-slate-700 uppercase tracking-wide">Birth Time:</label>
+                      <input
+                        type="time"
+                        value={birthTime}
+                        onChange={(e) => setBirthTime(e.target.value)}
+                        className="bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                    </div>
+                  )}
                 </div>
 
-                {/* Time Units Breakdown Table */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                  <div className="bg-[#f8fafc] border border-slate-200 p-3 rounded-lg">
-                    <div className="text-[11px] font-medium text-slate-500">Total Months</div>
-                    <div className="text-base font-bold text-calcNavy-dark">
-                      ~{calculationResult.totalMonths.toLocaleString()}
-                    </div>
-                  </div>
-                  <div className="bg-[#f8fafc] border border-slate-200 p-3 rounded-lg">
-                    <div className="text-[11px] font-medium text-slate-500">Total Weeks</div>
-                    <div className="text-base font-bold text-calcNavy-dark">
-                      {calculationResult.totalWeeks.toLocaleString()} w, {calculationResult.remainingDaysInWeek} d
-                    </div>
-                  </div>
-                  <div className="bg-[#f8fafc] border border-slate-200 p-3 rounded-lg">
-                    <div className="text-[11px] font-medium text-slate-500">Total Days</div>
-                    <div className="text-base font-bold text-calcNavy-dark">
-                      {calculationResult.totalDays.toLocaleString()}
-                    </div>
-                  </div>
-                  <div className="bg-[#f8fafc] border border-slate-200 p-3 rounded-lg">
-                    <div className="text-[11px] font-medium text-slate-500">Total Hours</div>
-                    <div className="text-base font-bold text-calcNavy-dark font-mono">
-                      {calculationResult.totalHours.toLocaleString()}
-                    </div>
-                  </div>
-                  <div className="bg-[#f8fafc] border border-slate-200 p-3 rounded-lg">
-                    <div className="text-[11px] font-medium text-slate-500">Total Minutes</div>
-                    <div className="text-base font-bold text-calcNavy-dark font-mono">
-                      {calculationResult.totalMinutes.toLocaleString()}
-                    </div>
-                  </div>
-                  <div className="bg-[#f8fafc] border border-slate-200 p-3 rounded-lg">
-                    <div className="text-[11px] font-medium text-slate-500">Total Seconds</div>
-                    <div className="text-base font-bold text-calcNavy-dark font-mono">
-                      {calculationResult.totalSeconds.toLocaleString()}
-                    </div>
-                  </div>
+                {/* Bottom Full-Width Calculate Age Button */}
+                <div className="pt-2">
+                  <button
+                    type="button"
+                    className="w-full py-3 px-5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-bold text-sm rounded-xl shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <Calculator className="w-4 h-4 text-white" />
+                    <span>Calculate Age</span>
+                  </button>
                 </div>
-              </>
-            ) : (
-              <div className="p-8 text-center bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
-                {calculationResult?.message || 'Please enter valid dates to calculate.'}
+
+              </div>
+
+              {/* RIGHT 50% COLUMN (lg:col-span-6): Exact Age Result + Next Birthday + Milestone Progress */}
+              {calculationResult && !calculationResult.isInvalid && (
+                <div className="lg:col-span-6 flex flex-col justify-between space-y-4">
+                  
+                  {/* Top Header Row */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-xs font-bold text-blue-600 uppercase tracking-wider">
+                      <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+                      <span>EXACT AGE RESULT</span>
+                    </div>
+                    <span className="text-[11px] text-slate-400 font-medium">Instant Calculation</span>
+                  </div>
+
+                  {/* Main Age Number & 3 Mini Unit Boxes */}
+                  <div className="space-y-1">
+                    <div className="flex items-start justify-between gap-4">
+                      {/* Large Age Display */}
+                      <div className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                        <span className="text-2xl sm:text-3xl">{calculationResult.years}</span> <span className="text-xs sm:text-sm font-semibold text-slate-500">years,</span> <span className="text-2xl sm:text-3xl">{calculationResult.months}</span> <span className="text-xs sm:text-sm font-semibold text-slate-500">months,</span> <span className="text-2xl sm:text-3xl">{calculationResult.days}</span>
+                        <div className="text-xs sm:text-sm font-semibold text-slate-500">days</div>
+                      </div>
+
+                      {/* 3 Mini Unit Boxes */}
+                      <div className="flex items-center gap-1.5 shrink-0 pt-1">
+                        <div className="bg-blue-50/60 border border-blue-100 rounded-xl px-2.5 py-1.5 text-center min-w-[46px]">
+                          <div className="text-sm font-extrabold text-blue-600">{calculationResult.years}</div>
+                          <div className="text-[9px] font-bold text-blue-500 uppercase">YEARS</div>
+                        </div>
+                        <div className="bg-blue-50/60 border border-blue-100 rounded-xl px-2.5 py-1.5 text-center min-w-[46px]">
+                          <div className="text-sm font-extrabold text-blue-600">{calculationResult.months}</div>
+                          <div className="text-[9px] font-bold text-blue-500 uppercase">MONTHS</div>
+                        </div>
+                        <div className="bg-blue-50/60 border border-blue-100 rounded-xl px-2.5 py-1.5 text-center min-w-[46px]">
+                          <div className="text-sm font-extrabold text-blue-600">{calculationResult.days}</div>
+                          <div className="text-[9px] font-bold text-blue-500 uppercase">DAYS</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p className="text-[11px] text-slate-400 font-medium">
+                      Calculated precision from {calculationResult.birthShortFormatted} to {calculationResult.targetShortFormatted}
+                    </p>
+                  </div>
+
+                  {/* Next Birthday Light Card Box */}
+                  <div className="bg-slate-50/80 border border-slate-100 rounded-2xl p-3.5 flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                        <CalendarCheck className="w-4.5 h-4.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-slate-900">
+                          Next Birthday: {calculationResult.nextBdayFormatted}
+                        </div>
+                        <div className="text-[11px] text-slate-500 font-medium mt-0.5">
+                          in <span className="text-blue-600 font-bold">{calculationResult.nextBdayDays} days</span> - turning {calculationResult.turningAge}
+                        </div>
+                      </div>
+                    </div>
+                    <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-600 font-bold text-xs border border-blue-100 shrink-0">
+                      Falls on a {calculationResult.nextBdayWeekday}
+                    </span>
+                  </div>
+
+                  {/* Milestone Progress Card Box */}
+                  <div className="bg-slate-50/50 border border-slate-100 rounded-2xl p-3.5 space-y-2">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-semibold text-slate-700">
+                        Milestone: {calculationResult.nextMilestoneAge}th Birthday Progress
+                      </span>
+                      <span className="font-extrabold text-blue-600">
+                        {calculationResult.milestonePercent}%
+                      </span>
+                    </div>
+
+                    {/* Track */}
+                    <div className="w-full bg-slate-200/80 h-2 rounded-full overflow-hidden">
+                      <div 
+                        className="bg-blue-600 h-full rounded-full transition-all duration-500" 
+                        style={{ width: `${calculationResult.milestonePercent}%` }}
+                      ></div>
+                    </div>
+
+                    <div className="flex items-center justify-between text-[11px] text-slate-400 font-medium">
+                      <span>Age {calculationResult.prevMilestoneAge}</span>
+                      <span>Age {calculationResult.nextMilestoneAge} (Goal)</span>
+                    </div>
+                  </div>
+
+                </div>
+              )}
+
+            </div>
+
+            {/* ROW 2: The 6 Lifetime Metrics Text Section (Second Row below inputs & exact age card) */}
+            {calculationResult && !calculationResult.isInvalid && (
+              <div className="pt-5 border-t border-slate-100 mt-5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+                  
+                  <div className="flex flex-col items-center justify-center">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-0.5">TOTAL MONTHS</span>
+                    <span className="text-base sm:text-lg font-extrabold text-slate-900">~{calculationResult.totalMonths}</span>
+                  </div>
+
+                  <div className="flex flex-col items-center justify-center">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-0.5">TOTAL WEEKS</span>
+                    <span className="text-base sm:text-lg font-extrabold text-slate-900">
+                      {calculationResult.totalWeeks.toLocaleString()} <span className="text-xs font-semibold text-slate-500">w, {calculationResult.remainingDaysInWeek} d</span>
+                    </span>
+                  </div>
+
+                  <div className="flex flex-col items-center justify-center">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-0.5">TOTAL DAYS</span>
+                    <span className="text-base sm:text-lg font-extrabold text-slate-900">{calculationResult.totalDays.toLocaleString()}</span>
+                  </div>
+
+                  <div className="flex flex-col items-center justify-center">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-0.5">TOTAL HOURS</span>
+                    <span className="text-base sm:text-lg font-extrabold text-slate-900">{calculationResult.totalHours.toLocaleString()}</span>
+                  </div>
+
+                  <div className="flex flex-col items-center justify-center">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-0.5">TOTAL MINUTES</span>
+                    <span className="text-base sm:text-lg font-extrabold text-slate-900">{calculationResult.totalMinutes.toLocaleString()}</span>
+                  </div>
+
+                  <div className="flex flex-col items-center justify-center">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-0.5">TOTAL SECONDS</span>
+                    <span className="text-base sm:text-lg font-extrabold text-slate-900">{calculationResult.totalSeconds.toLocaleString()}</span>
+                  </div>
+
+                </div>
               </div>
             )}
+
           </div>
+
         </div>
       </section>
+
+      {/* 3 FEATURE HIGHLIGHT COLUMNS BELOW THE BLUE HERO WAVE (Matching Screenshot!) */}
+      <div className="bg-[#f8fafc] py-10">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8">
+          
+          {/* Feature 1 */}
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 text-blue-600 shadow-xs">
+              <CheckCircle2 className="w-6 h-6" />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-base font-bold text-slate-900">Compliance Made Simple</h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Calculates exact age accounting for leap years and calendar month length variations.
+              </p>
+            </div>
+          </div>
+
+          {/* Feature 2 */}
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 text-blue-600 shadow-xs">
+              <Activity className="w-6 h-6" />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-base font-bold text-slate-900">Real-Time Results</h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Instant verification and lifetime metrics breakdown with zero page reloads.
+              </p>
+            </div>
+          </div>
+
+          {/* Feature 3 */}
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 text-blue-600 shadow-xs">
+              <ShieldCheck className="w-6 h-6" />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-base font-bold text-slate-900">Secure & Privacy-Focused</h3>
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Data is computed locally in your browser and compliant with strict privacy standards.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* LOWER CONTENT WRAPPER */}
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
 
       {/* SECTION: HOW IT WORKS — A QUICK EXAMPLE */}
       <section className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
@@ -948,6 +1072,7 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }

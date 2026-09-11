@@ -70,27 +70,27 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-[#003366] text-white shadow-lg sticky top-0 z-50 border-b border-[#002244]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="bg-white/95 backdrop-blur-md text-slate-800 shadow-sm sticky top-0 z-50 border-b border-slate-200/80">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-16 flex items-center justify-between gap-4">
           
           {/* LOGO / BRAND */}
-          <Link to="/" className="flex items-center gap-3 group shrink-0">
-            <div className="w-10 h-10 rounded-xl bg-[#084d8c] flex items-center justify-center text-white border border-blue-400/30 shadow-inner group-hover:bg-[#0b5da8] transition-colors">
-              <Calculator className="w-5 h-5 text-yellow-300" />
+          <Link to="/" className="flex items-center gap-2.5 group shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:bg-blue-700 transition-all">
+              <ShieldCheck className="w-5 h-5 text-white" />
             </div>
             <div>
-              <span className="font-extrabold text-lg sm:text-xl text-white tracking-tight block">
-                Age Calculator
+              <span className="font-extrabold text-lg sm:text-xl text-slate-900 tracking-tight block leading-tight">
+                Age<span className="text-blue-600">Calculator</span>
               </span>
-              <span className="text-[10px] text-blue-200 block -mt-1 font-medium">
-                Free Date & Time Tools
+              <span className="text-[10px] text-slate-500 block -mt-0.5 font-medium">
+                Fast & Precise Age Tools
               </span>
             </div>
           </Link>
 
           {/* DESKTOP NAVIGATION & MEGA MENU */}
-          <nav className="hidden lg:flex items-center gap-1.5 text-xs font-semibold" ref={menuRef}>
+          <nav className="hidden lg:flex items-center gap-1 text-xs font-semibold text-slate-600" ref={menuRef}>
             
             {/* Mega Menu Dropdown Button */}
             <div className="relative">
@@ -99,13 +99,13 @@ export default function Header() {
                 onClick={() => setMegaMenuOpen(!megaMenuOpen)}
                 className={`px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 ${
                   megaMenuOpen
-                    ? 'bg-[#084d8c] text-white shadow-inner border border-blue-400/40'
-                    : 'text-blue-100 hover:text-white hover:bg-white/10'
+                    ? 'bg-blue-50 text-blue-700 font-bold border border-blue-200/80'
+                    : 'hover:text-slate-900 hover:bg-slate-100/80'
                 }`}
               >
-                <Layers className="w-4 h-4 text-yellow-300" />
+                <Layers className="w-4 h-4 text-blue-600" />
                 <span>All Calculators</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${megaMenuOpen ? 'rotate-180 text-yellow-300' : 'text-blue-300'}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${megaMenuOpen ? 'rotate-180 text-blue-600' : 'text-slate-400'}`} />
               </button>
 
               {/* MEGA MENU CONTAINER */}
@@ -114,8 +114,8 @@ export default function Header() {
                   
                   {/* Column 1: Age by Unit */}
                   <div className="col-span-4 space-y-3">
-                    <div className="flex items-center gap-2 text-calcNavy font-bold uppercase text-[11px] tracking-wider border-b border-slate-100 pb-2">
-                      <Calendar className="w-4 h-4 text-calcNavy" />
+                    <div className="flex items-center gap-2 text-blue-600 font-bold uppercase text-[11px] tracking-wider border-b border-slate-100 pb-2">
+                      <Calendar className="w-4 h-4 text-blue-600" />
                       <span>Age Units</span>
                     </div>
                     <ul className="space-y-1.5">
@@ -125,7 +125,7 @@ export default function Header() {
                             to={item.path}
                             className={`block p-2 rounded-lg transition-colors ${
                               location.pathname === item.path
-                                ? 'bg-blue-50 text-calcNavy font-bold border-l-2 border-calcNavy'
+                                ? 'bg-blue-50 text-blue-700 font-bold border-l-2 border-blue-600'
                                 : 'hover:bg-slate-50 text-slate-700'
                             }`}
                           >
@@ -139,8 +139,8 @@ export default function Header() {
 
                   {/* Column 2: Specialized Calculators */}
                   <div className="col-span-4 space-y-3">
-                    <div className="flex items-center gap-2 text-calcNavy font-bold uppercase text-[11px] tracking-wider border-b border-slate-100 pb-2">
-                      <Sparkles className="w-4 h-4 text-calcNavy" />
+                    <div className="flex items-center gap-2 text-blue-600 font-bold uppercase text-[11px] tracking-wider border-b border-slate-100 pb-2">
+                      <Sparkles className="w-4 h-4 text-blue-600" />
                       <span>Specialized Tools</span>
                     </div>
                     <ul className="space-y-1.5">
@@ -150,7 +150,7 @@ export default function Header() {
                             to={item.path}
                             className={`block p-2 rounded-lg transition-colors ${
                               location.pathname === item.path
-                                ? 'bg-blue-50 text-calcNavy font-bold border-l-2 border-calcNavy'
+                                ? 'bg-blue-50 text-blue-700 font-bold border-l-2 border-blue-600'
                                 : 'hover:bg-slate-50 text-slate-700'
                             }`}
                           >
@@ -165,8 +165,8 @@ export default function Header() {
                   {/* Column 3: Time Units & Highlight Box */}
                   <div className="col-span-4 space-y-4">
                     <div className="space-y-3">
-                      <div className="flex items-center gap-2 text-calcNavy font-bold uppercase text-[11px] tracking-wider border-b border-slate-100 pb-2">
-                        <Clock className="w-4 h-4 text-calcNavy" />
+                      <div className="flex items-center gap-2 text-blue-600 font-bold uppercase text-[11px] tracking-wider border-b border-slate-100 pb-2">
+                        <Clock className="w-4 h-4 text-blue-600" />
                         <span>Time Precision</span>
                       </div>
                       <ul className="space-y-1.5">
@@ -176,7 +176,7 @@ export default function Header() {
                               to={item.path}
                               className={`block p-2 rounded-lg transition-colors ${
                                 location.pathname === item.path
-                                  ? 'bg-blue-50 text-calcNavy font-bold border-l-2 border-calcNavy'
+                                  ? 'bg-blue-50 text-blue-700 font-bold border-l-2 border-blue-600'
                                   : 'hover:bg-slate-50 text-slate-700'
                               }`}
                             >
@@ -189,9 +189,9 @@ export default function Header() {
                     </div>
 
                     {/* Featured Callout */}
-                    <div className="bg-[#f0f7ff] border border-blue-200 rounded-xl p-3.5 space-y-2">
-                      <div className="text-xs font-bold text-calcNavy flex items-center gap-1.5">
-                        <Calculator className="w-3.5 h-3.5 text-[#4a8505]" />
+                    <div className="bg-blue-50/70 border border-blue-100 rounded-xl p-3.5 space-y-2">
+                      <div className="text-xs font-bold text-blue-800 flex items-center gap-1.5">
+                        <Calculator className="w-3.5 h-3.5 text-blue-600" />
                         <span>Date Difference Math</span>
                       </div>
                       <p className="text-[11px] text-slate-600 leading-snug">
@@ -199,7 +199,7 @@ export default function Header() {
                       </p>
                       <Link
                         to="/date-calculator"
-                        className="text-[11px] font-bold text-calcNavy hover:text-calcBlue flex items-center gap-1 pt-1"
+                        className="text-[11px] font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1 pt-1"
                       >
                         <span>Open Tool</span>
                         <ArrowRight className="w-3 h-3" />
@@ -213,66 +213,65 @@ export default function Header() {
 
             {/* Direct Navigation Links */}
             <Link
-              to="/date-calculator"
-              className={`px-3 py-2 rounded-lg transition-colors ${
-                location.pathname === '/date-calculator'
-                  ? 'bg-[#084d8c] text-white border border-blue-400/40'
-                  : 'text-blue-100 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              Date Calculator
-            </Link>
-
-            <Link
-              to="/birthday-calculator"
-              className={`px-3 py-2 rounded-lg transition-colors ${
-                location.pathname === '/birthday-calculator'
-                  ? 'bg-[#084d8c] text-white border border-blue-400/40'
-                  : 'text-blue-100 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              Birthday
-            </Link>
-
-            <Link
               to="/how-it-works"
               className={`px-3 py-2 rounded-lg transition-colors ${
                 location.pathname === '/how-it-works'
-                  ? 'bg-[#084d8c] text-white border border-blue-400/40'
-                  : 'text-blue-100 hover:text-white hover:bg-white/10'
+                  ? 'bg-blue-50 text-blue-700 font-bold'
+                  : 'hover:text-slate-900 hover:bg-slate-100/80'
               }`}
             >
               How It Works
             </Link>
 
             <Link
+              to="/birthday-calculator"
+              className={`px-3 py-2 rounded-lg transition-colors ${
+                location.pathname === '/birthday-calculator'
+                  ? 'bg-blue-50 text-blue-700 font-bold'
+                  : 'hover:text-slate-900 hover:bg-slate-100/80'
+              }`}
+            >
+              Birthday
+            </Link>
+
+            <Link
+              to="/date-calculator"
+              className={`px-3 py-2 rounded-lg transition-colors ${
+                location.pathname === '/date-calculator'
+                  ? 'bg-blue-50 text-blue-700 font-bold'
+                  : 'hover:text-slate-900 hover:bg-slate-100/80'
+              }`}
+            >
+              Date Tools
+            </Link>
+
+            <Link
               to="/about-us"
               className={`px-3 py-2 rounded-lg transition-colors ${
                 location.pathname === '/about-us'
-                  ? 'bg-[#084d8c] text-white border border-blue-400/40'
-                  : 'text-blue-100 hover:text-white hover:bg-white/10'
+                  ? 'bg-blue-50 text-blue-700 font-bold'
+                  : 'hover:text-slate-900 hover:bg-slate-100/80'
               }`}
             >
               About
             </Link>
           </nav>
 
-          {/* RIGHT ACTION: CONTACT US BUTTON & MOBILE TOGGLE */}
+          {/* RIGHT ACTION: GET STARTED / CALCULATE NOW BUTTON & MOBILE TOGGLE */}
           <div className="flex items-center gap-3">
-            {/* Prominent Contact Us Button */}
             <Link
-              to="/contact-us"
-              className="bg-[#4a8505] hover:bg-[#3e7004] active:scale-95 text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all flex items-center gap-2 border border-green-400/30 shrink-0"
+              to="/"
+              className="bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm px-4 py-2 rounded-xl shadow-md shadow-blue-600/20 transition-all flex items-center gap-1.5 shrink-0"
             >
-              <Mail className="w-4 h-4 text-yellow-300" />
-              <span>Contact Us</span>
+              <Sparkles className="w-3.5 h-3.5 text-blue-200" />
+              <span>Calculate Free</span>
             </Link>
 
             {/* Mobile Menu Toggle Button */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg bg-[#084d8c] hover:bg-[#0b5da8] text-white border border-blue-400/30 transition-colors"
+              className="lg:hidden p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-colors"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
