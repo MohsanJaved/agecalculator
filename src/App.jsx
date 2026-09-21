@@ -23,10 +23,12 @@ import PrivacyPolicyPage from './pages/utilities/PrivacyPolicyPage.jsx';
 import TermsPage from './pages/utilities/TermsPage.jsx';
 import DisclaimerPage from './pages/utilities/DisclaimerPage.jsx';
 import HowItWorksPage from './pages/utilities/HowItWorksPage.jsx';
+import CanonicalManager from './components/CanonicalManager.jsx';
 
 export default function App() {
   return (
     <Router>
+      <CanonicalManager />
       <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col justify-between font-sans">
         <Header />
         <main className="w-full flex-grow">

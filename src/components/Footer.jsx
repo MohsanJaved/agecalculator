@@ -209,7 +209,7 @@ export default function Footer() {
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-blue-300">
           <div className="text-center sm:text-left space-y-1">
             <div className="font-semibold text-white text-xs sm:text-sm">
-              Age Calculator – Find Your Exact Age in Years, Months & Days
+              Age Calculator Today – Find Exact Age in Years, Months & Days
             </div>
             <div className="text-[11px] text-blue-300/80">
               © {new Date().getFullYear()} Age Calculator. All rights reserved. Free for personal & educational use.
