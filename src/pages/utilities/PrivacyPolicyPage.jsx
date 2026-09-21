@@ -14,34 +14,22 @@ import {
   Server
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PageHero from '../../components/PageHero.jsx';
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="space-y-10 max-w-4xl mx-auto">
-      {/* HERO / TITLE */}
-      <section className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Legal & Privacy
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Privacy Policy
-        </h1>
-        <p className="text-slate-700 text-base sm:text-lg leading-relaxed pt-2 border-t border-slate-100">
-          Privacy is very essential to us. The privacy policy describes how we collect, use and protect your personal information on{' '}
-          <a 
-            href="http://agecalculator.today/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-calcNavy font-semibold underline hover:text-calcBlue transition-colors"
-          >
-            our website
-          </a>{' '}
-          when you visit and make use of the calculators available on this site.
-        </p>
-        <div className="p-4 bg-[#f8fafc] border-l-4 border-calcNavy rounded-r-xl text-slate-700 text-sm font-medium">
-          By using our site, you consent to this privacy policy.
-        </div>
-      </section>
+    <div className="w-full">
+      <PageHero
+        title="Privacy Policy – Your Data & Calculation Safety"
+        description="Our transparent privacy policy details how calculations are processed securely on your client device with zero permanent storage of personal date records."
+        badge="Legal & Privacy"
+        badgeIcon={ShieldCheck}
+        category="Legal"
+        currentPage="Privacy Policy"
+        features={['Client-Side Calculations', 'No Personal Data Storage', 'Transparent Analytics']}
+      />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10">
 
       {/* INFORMATION WE COLLECT & CALCULATOR INFORMATION */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -341,6 +329,7 @@ export default function PrivacyPolicyPage() {
           </a>
         </div>
       </section>
+      </div>
     </div>
   );
 }

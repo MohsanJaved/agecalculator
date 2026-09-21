@@ -11,33 +11,22 @@ import {
   Info
 } from 'lucide-react';
 
+import PageHero from '../../components/PageHero.jsx';
+
 export default function DisclaimerPage() {
   return (
-    <div className="space-y-10 max-w-4xl mx-auto">
-      {/* HERO / TITLE */}
-      <section className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Legal & Limitations
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Disclaimer
-        </h1>
-        <p className="text-slate-700 text-base sm:text-lg leading-relaxed pt-2 border-t border-slate-100">
-          The information and calculator results provided on this{' '}
-          <a 
-            href="http://agecalculator.today/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-calcNavy font-semibold underline hover:text-calcBlue transition-colors"
-          >
-            Age Calculator website
-          </a>{' '}
-          are intended for <strong>general informational and educational purposes only</strong>.
-        </p>
-        <div className="p-4 bg-[#f8fafc] border-l-4 border-calcNavy rounded-r-xl text-slate-700 text-sm font-medium">
-          By using our website and calculators, you acknowledge and agree to the terms of this Disclaimer.
-        </div>
-      </section>
+    <div className="w-full">
+      <PageHero
+        title="Disclaimer – Informational & Educational Use"
+        description="The information and calculation results provided on this website are intended for general informational, planning, and educational purposes."
+        badge="Legal Disclaimer"
+        badgeIcon={AlertTriangle}
+        category="Legal"
+        currentPage="Disclaimer"
+        features={['General Informational Use', 'Educational Reference', 'Client-Side Precision']}
+      />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10">
 
       {/* CALCULATOR ACCURACY */}
       <section className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
@@ -214,6 +203,7 @@ export default function DisclaimerPage() {
           </a>
         </div>
       </section>
+      </div>
     </div>
   );
 }

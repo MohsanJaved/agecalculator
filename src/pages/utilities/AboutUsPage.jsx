@@ -13,6 +13,7 @@ import {
   Lock,
   RefreshCw
 } from 'lucide-react';
+import PageHero from '../../components/PageHero.jsx';
 
 export default function AboutUsPage() {
   const toolsList = [
@@ -33,25 +34,30 @@ export default function AboutUsPage() {
   ];
 
   return (
-    <div className="space-y-10 max-w-4xl mx-auto">
-      {/* HERO / HEADER */}
-      <section className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          About Our Platform
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          About Us
-        </h1>
-        <div className="text-slate-700 text-base sm:text-lg leading-relaxed pt-2 border-t border-slate-100">
-          <h2 className="text-xl font-bold text-calcNavy mb-2">Who We Are</h2>
-          <p className="mb-4">
-            Welcome to our <a href="http://agecalculator.today/" target="_blank" rel="noopener noreferrer" className="text-calcNavy font-semibold underline hover:text-calcBlue transition-colors">Age Calculator</a>, a simple and easy-to-use online platform designed to help you calculate your age and the time between important dates.
-          </p>
-          <p>
-            We built this site around a simple idea: figuring out exact dates and ages shouldn't require manual counting, guesswork, or a stack of sticky notes. What started as a single age calculator has grown into a full set of free, easy-to-use date and age tools — built for anyone who wants a precise answer in seconds rather than minutes.
-          </p>
-        </div>
-      </section>
+    <div className="w-full">
+      <PageHero
+        title="About Us – Precision Age & Date Calculation"
+        description="Learn about our mission to provide lightning-fast, mathematically precise, and 100% privacy-focused age and date calculation tools."
+        badge="About Our Platform"
+        badgeIcon={HeartHandshake}
+        category="Company"
+        currentPage="About Us"
+        features={['100% Free & Private', 'No Data Tracking', 'Instant Client-Side Engine']}
+      />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10">
+        {/* WHO WE ARE */}
+        <section className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-calcNavy mb-2">Who We Are</h2>
+          <div className="text-slate-700 text-base leading-relaxed space-y-3">
+            <p>
+              Welcome to our <a href="https://agecalculator.today/" target="_blank" rel="noopener noreferrer" className="text-calcNavy font-semibold underline hover:text-calcBlue transition-colors">Age Calculator</a>, a simple and easy-to-use online platform designed to help you calculate your age and the time between important dates.
+            </p>
+            <p>
+              We built this site around a simple idea: figuring out exact dates and ages shouldn't require manual counting, guesswork, or a stack of sticky notes. What started as a single age calculator has grown into a full set of free, easy-to-use date and age tools — built for anyone who wants a precise answer in seconds rather than minutes.
+            </p>
+          </div>
+        </section>
 
       {/* WHAT WE OFFER */}
       <section className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
@@ -178,9 +184,10 @@ export default function AboutUsPage() {
           Has a suggestion, spotted something that doesn't look right, or just want to say hello? We'd love to hear from you — reach out through our [Contact page] and we'll get back to you as soon as we can.
         </p>
         <p className="text-slate-800 text-sm sm:text-base font-semibold leading-relaxed pt-2 border-t border-slate-100">
-          Thank you for <a href="http://agecalculator.today/" target="_blank" rel="noopener noreferrer" className="text-calcNavy underline hover:text-calcBlue transition-colors">using our Age Calculator</a> and for making our website part of your everyday date and age calculations.
+          Thank you for <a href="https://agecalculator.today/" target="_blank" rel="noopener noreferrer" className="text-calcNavy underline hover:text-calcBlue transition-colors">using our Age Calculator</a> and for making our website part of your everyday date and age calculations.
         </p>
       </section>
+      </div>
     </div>
   );
 }

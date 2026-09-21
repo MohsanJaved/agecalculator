@@ -13,6 +13,8 @@ import {
   Sparkles
 } from 'lucide-react';
 
+import PageHero from '../../components/PageHero.jsx';
+
 export default function ContactUsPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -29,22 +31,18 @@ export default function ContactUsPage() {
   };
 
   return (
-    <div className="space-y-10 max-w-4xl mx-auto">
-      {/* HERO / TITLE */}
-      <section className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Support & Feedback
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Contact Us
-        </h1>
-        <p className="text-slate-700 text-base sm:text-lg leading-relaxed pt-2 border-t border-slate-100">
-          Do you have any questions or ideas about our calculators? We would be glad to hear from you.
-        </p>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Our site offers you convenient <a href="http://agecalculator.today/" target="_blank" rel="noopener noreferrer" className="text-calcNavy font-semibold underline hover:text-calcBlue transition-colors">online calculators for age</a>, birthday, date, and time calculation. Please inform us if you find any errors or technical problems, as well as if you have any suggestions for improving the site.
-        </p>
-      </section>
+    <div className="w-full">
+      <PageHero
+        title="Contact Us – Support, Suggestions & Feedback"
+        description="Have questions, ideas, or feedback about our calculation tools? Reach out to our team — we read every inquiry and appreciate your feedback."
+        badge="Support & Feedback"
+        badgeIcon={MessageSquare}
+        category="Company"
+        currentPage="Contact Us"
+        features={['Fast Response Time', 'Bug Reports & Feature Requests', 'Direct Feedback Channel']}
+      />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10">
 
       {/* HOW TO CONTACT US & INTERACTIVE FORM */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -249,6 +247,7 @@ export default function ContactUsPage() {
           </p>
         </div>
       </section>
+      </div>
     </div>
   );
 }

@@ -13,6 +13,7 @@ import {
   Clock,
   BookOpen
 } from 'lucide-react';
+import PageHero from '../components/PageHero.jsx';
 
 export default function SchoolAgeCalculatorPage() {
   const [birthDate, setBirthDate] = useState('2021-09-03');
@@ -83,46 +84,38 @@ export default function SchoolAgeCalculatorPage() {
   };
 
   return (
-    <div className="space-y-12">
-      {/* Quick Example Loader Buttons */}
-      <div className="flex flex-wrap items-center justify-end gap-2">
-        <button 
-          onClick={loadAyeshaExample}
-          className="px-3.5 py-1.5 rounded bg-calcNavy hover:bg-calcNavy-light text-white text-xs font-semibold border border-blue-400/40 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-          Load Ayesha's Example (3 Sept 2021 vs 1 Sept 2026)
-        </button>
-        <button 
-          onClick={loadJune2020Example}
-          className="px-3.5 py-1.5 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold border border-slate-600 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-          June 10, 2020 Example
-        </button>
-      </div>
+    <div className="w-full">
+      <PageHero
+        title="School Age Calculator – Check Eligibility by Cutoff Date"
+        description="Determine kindergarten and school grade eligibility based on birth date and school district cutoff dates. Instant qualification checks for academic enrollment."
+        badge="School & Grade Eligibility"
+        badgeIcon={GraduationCap}
+        category="Calculators"
+        currentPage="School Age Calculator"
+        features={['District Cutoff Calibration', 'Exact Grade Qualification', '100% Free & Private']}
+        actions={
+          <>
+            <button 
+              onClick={loadAyeshaExample}
+              className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-calcNavy text-xs font-bold border border-blue-200 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              Ayesha's Example (3 Sept 2021 vs 1 Sept 2026)
+            </button>
+            <button 
+              onClick={loadJune2020Example}
+              className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold border border-slate-700 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+              June 10, 2020 Example
+            </button>
+          </>
+        }
+      />
 
-      {/* HERO SECTION */}
-      <section className="space-y-3 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          School Age Calculator
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          School Age Calculator – Check School Eligibility by Cutoff Date
-        </h1>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Want to know <strong>how old your child is for school?</strong> Our free School Age Calculator calculates a child's age from their date of birth and can show their age on a selected school date.
-        </p>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Most schools don't just look at a child's current age — they check whether the child reaches a required age by a specific cutoff date, usually tied to the start of the academic year. This calculator checks your child's age against that cutoff date, so you know exactly which intake year they qualify for.
-        </p>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Enter your child's date of birth and choose the date you want to check. <a href="https://agecalculator.today/" target="_blank" rel="noopener noreferrer" className="text-calcNavy font-semibold underline hover:text-calcBlue transition-colors">The calculator</a> can show their age in <strong>years, months, and days</strong>, helping you understand how old your child will be when starting school or reaching another school-related milestone.
-        </p>
-      </section>
-
-      {/* INTERACTIVE CALCULATOR WIDGET */}
-      <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+        {/* INTERACTIVE CALCULATOR WIDGET */}
+        <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
         <div className="border-b border-slate-200 pb-4 mb-6 flex items-center justify-between">
           <h2 className="text-xl font-bold text-calcNavy-dark flex items-center gap-2">
             <School className="w-5 h-5 text-calcNavy" />
@@ -611,6 +604,7 @@ export default function SchoolAgeCalculatorPage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }

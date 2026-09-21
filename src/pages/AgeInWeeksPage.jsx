@@ -9,6 +9,8 @@ import {
   CalendarCheck
 } from 'lucide-react';
 
+import PageHero from '../components/PageHero.jsx';
+
 export default function AgeInWeeksPage() {
   const [birthDate, setBirthDate] = useState('2015-06-03');
   const [compareDate, setCompareDate] = useState('2026-09-05');
@@ -75,33 +77,29 @@ export default function AgeInWeeksPage() {
   };
 
   return (
-    <div className="space-y-12">
-      {/* Quick Example Loader Button */}
-      <div className="flex justify-end">
-        <button 
-          onClick={loadFatimaExample}
-          className="px-3.5 py-1.5 rounded bg-calcNavy hover:bg-calcNavy-light text-white text-xs font-semibold border border-blue-400/40 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-          Load Fatima's Example (2015 → 2026)
-        </button>
-      </div>
+    <div className="w-full">
+      <PageHero
+        title="Age in Weeks Calculator – How Many Weeks Old Are You?"
+        description="Convert any date of birth into total completed weeks and remaining days. Perfect for baby growth tracking, pediatric milestones, fitness plans, and life progress."
+        badge="Age in Weeks"
+        badgeIcon={Calendar}
+        category="Calculators"
+        currentPage="Age in Weeks"
+        features={['Total Weeks & Days', 'Weeks of Life Chart', '100% Free & Private']}
+        actions={
+          <button 
+            onClick={loadFatimaExample}
+            className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-calcNavy text-xs font-bold border border-blue-200 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+            Load Fatima's Example (2015 → 2026)
+          </button>
+        }
+      />
 
-      {/* HERO SECTION */}
-      <section className="space-y-3 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          SEO title: Age in Weeks Calculator – How Many Weeks Old Am I?
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Age in Weeks Calculator – How Many Weeks Old Are You?
-        </h1>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Weeks are one of the most practical ways to track age — especially for babies and young children, where growth and milestones are often measured week by week rather than in years. This tool converts any date of birth into a precise total number of weeks.
-        </p>
-      </section>
-
-      {/* INTERACTIVE CALCULATOR WIDGET */}
-      <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+        {/* INTERACTIVE CALCULATOR WIDGET */}
+        <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
         <div className="border-b border-slate-200 pb-4 mb-6 flex items-center justify-between">
           <h2 className="text-xl font-bold text-calcNavy-dark flex items-center gap-2">
             <Calculator className="w-5 h-5 text-calcNavy" />
@@ -482,6 +480,7 @@ export default function AgeInWeeksPage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }

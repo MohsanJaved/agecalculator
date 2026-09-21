@@ -9,6 +9,8 @@ import {
   CalendarCheck
 } from 'lucide-react';
 
+import PageHero from '../components/PageHero.jsx';
+
 export default function AgeInYearsPage() {
   const [birthDate, setBirthDate] = useState('1993-12-02');
   const [compareDate, setCompareDate] = useState('2026-09-05');
@@ -87,40 +89,38 @@ export default function AgeInYearsPage() {
   };
 
   return (
-    <div className="space-y-12">
-      {/* Quick Example Loader Buttons */}
-      <div className="flex flex-wrap items-center justify-end gap-2">
-        <button 
-          onClick={loadZaraExample}
-          className="px-3.5 py-1.5 rounded bg-calcNavy hover:bg-calcNavy-light text-white text-xs font-semibold border border-blue-400/40 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-          Load Zara's Example (1993 → 2026)
-        </button>
-        <button 
-          onClick={loadFutureExample}
-          className="px-3.5 py-1.5 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold border border-slate-600 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-          Load Future Example (2000 → 2030)
-        </button>
-      </div>
+    <div className="w-full">
+      <PageHero
+        title="Age in Years Calculator – Find Your Exact Age"
+        description="Age in years is the number everyone uses on forms, ID cards, and milestones. Calculate your exact completed years, calendar breakdown, and countdown to your next birthday."
+        badge="Age in Years"
+        badgeIcon={Calendar}
+        category="Calculators"
+        currentPage="Age in Years"
+        features={['Exact Calendar Years', 'Next Birthday Countdown', '100% Free & Private']}
+        actions={
+          <>
+            <button 
+              onClick={loadZaraExample}
+              className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-calcNavy text-xs font-bold border border-blue-200 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              Load Zara's Example (1993 → 2026)
+            </button>
+            <button 
+              onClick={loadFutureExample}
+              className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold border border-slate-700 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+              Load Future Example (2000 → 2030)
+            </button>
+          </>
+        }
+      />
 
-      {/* HERO SECTION */}
-      <section className="space-y-3 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Age in Years Calculator
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Age in Years Calculator – Find Your Exact Age
-        </h1>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Age in years is the number everyone actually uses — on forms, ID cards, and birthday cakes. But working it out precisely takes more than subtracting the birth year from the current year, especially if your birthday hasn't happened yet this year.
-        </p>
-      </section>
-
-      {/* INTERACTIVE CALCULATOR WIDGET */}
-      <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+        {/* INTERACTIVE CALCULATOR WIDGET */}
+        <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
         <div className="border-b border-slate-200 pb-4 mb-6 flex items-center justify-between">
           <h2 className="text-xl font-bold text-calcNavy-dark flex items-center gap-2">
             <Calculator className="w-5 h-5 text-calcNavy" />
@@ -478,6 +478,7 @@ export default function AgeInYearsPage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }

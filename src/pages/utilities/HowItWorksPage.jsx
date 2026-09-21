@@ -14,6 +14,8 @@ import {
   UserCheck
 } from 'lucide-react';
 
+import PageHero from '../../components/PageHero.jsx';
+
 export default function HowItWorksPage() {
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -49,19 +51,18 @@ export default function HowItWorksPage() {
   ];
 
   return (
-    <div className="space-y-10 max-w-4xl mx-auto">
-      {/* HERO / TITLE */}
-      <section className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Calculation Methodology
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          How It Works
-        </h1>
-        <p className="text-slate-700 text-base sm:text-lg leading-relaxed pt-2 border-t border-slate-100">
-          Every tool on this site is built on the same core idea: comparing two calendar dates precisely, then presenting the result in whatever unit is most useful to you. Here's exactly what happens behind the scenes.
-        </p>
-      </section>
+    <div className="w-full">
+      <PageHero
+        title="How It Works – Logic, Math & Methodology"
+        description="Every tool on this site is built on the same core principle: comparing two calendar dates precisely with leap-year adjustment and converting the duration into your desired units."
+        badge="Calculation Methodology"
+        badgeIcon={Cpu}
+        category="Information"
+        currentPage="How It Works"
+        features={['Exact Calendar Logic', 'Leap Year Calibrated', '100% Client-Side Privacy']}
+      />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10">
 
       {/* THE CORE PROCESS */}
       <section className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-5">
@@ -308,6 +309,7 @@ export default function HowItWorksPage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }

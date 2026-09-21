@@ -34,39 +34,39 @@ export default function App() {
         <main className="w-full flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/age-in-years" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><AgeInYearsPage /></div>} />
-            <Route path="/age-in-months" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><AgeInMonthsPage /></div>} />
-            <Route path="/age-in-weeks" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><AgeInWeeksPage /></div>} />
-            <Route path="/age-in-days" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><AgeInDaysPage /></div>} />
-            <Route path="/age-in-hours" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><AgeInHoursPage /></div>} />
-            <Route path="/age-in-minutes" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><AgeInMinutesPage /></div>} />
-            <Route path="/age-in-seconds" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><AgeInSecondsPage /></div>} />
-            <Route path="/age-on-specific-date" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><AgeOnSpecificDatePage /></div>} />
-            <Route path="/age-on-specific-date/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><AgeOnSpecificDatePage /></div>} />
-            <Route path="/birthday-calculator" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><BirthdayCalculatorPage /></div>} />
-            <Route path="/birthday-calculator/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><BirthdayCalculatorPage /></div>} />
-            <Route path="/baby-age-calculator" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><BabyAgeCalculatorPage /></div>} />
-            <Route path="/baby-age-calculator/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><BabyAgeCalculatorPage /></div>} />
-            <Route path="/school-age-calculator" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><SchoolAgeCalculatorPage /></div>} />
-            <Route path="/school-age-calculator/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><SchoolAgeCalculatorPage /></div>} />
-            <Route path="/legal-age-calculator" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><LegalAgeCalculatorPage /></div>} />
-            <Route path="/legal-age-calculator/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><LegalAgeCalculatorPage /></div>} />
-            <Route path="/leap-year-calculator" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><LeapYearCalculatorPage /></div>} />
-            <Route path="/leap-year-calculator/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><LeapYearCalculatorPage /></div>} />
-            <Route path="/date-calculator" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><DateCalculatorPage /></div>} />
-            <Route path="/date-calculator/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><DateCalculatorPage /></div>} />
-            <Route path="/about-us" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><AboutUsPage /></div>} />
-            <Route path="/about-us/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><AboutUsPage /></div>} />
-            <Route path="/contact-us" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><ContactUsPage /></div>} />
-            <Route path="/contact-us/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><ContactUsPage /></div>} />
-            <Route path="/privacy-policy" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><PrivacyPolicyPage /></div>} />
-            <Route path="/privacy-policy/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><PrivacyPolicyPage /></div>} />
-            <Route path="/terms" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><TermsPage /></div>} />
-            <Route path="/terms/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><TermsPage /></div>} />
-            <Route path="/disclaimer" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><DisclaimerPage /></div>} />
-            <Route path="/disclaimer/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><DisclaimerPage /></div>} />
-            <Route path="/how-it-works" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><HowItWorksPage /></div>} />
-            <Route path="/how-it-works/" element={<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10"><HowItWorksPage /></div>} />
+            <Route path="/age-in-years" element={<AgeInYearsPage />} />
+            <Route path="/age-in-months" element={<AgeInMonthsPage />} />
+            <Route path="/age-in-weeks" element={<AgeInWeeksPage />} />
+            <Route path="/age-in-days" element={<AgeInDaysPage />} />
+            <Route path="/age-in-hours" element={<AgeInHoursPage />} />
+            <Route path="/age-in-minutes" element={<AgeInMinutesPage />} />
+            <Route path="/age-in-seconds" element={<AgeInSecondsPage />} />
+            <Route path="/age-on-specific-date" element={<AgeOnSpecificDatePage />} />
+            <Route path="/age-on-specific-date/" element={<AgeOnSpecificDatePage />} />
+            <Route path="/birthday-calculator" element={<BirthdayCalculatorPage />} />
+            <Route path="/birthday-calculator/" element={<BirthdayCalculatorPage />} />
+            <Route path="/baby-age-calculator" element={<BabyAgeCalculatorPage />} />
+            <Route path="/baby-age-calculator/" element={<BabyAgeCalculatorPage />} />
+            <Route path="/school-age-calculator" element={<SchoolAgeCalculatorPage />} />
+            <Route path="/school-age-calculator/" element={<SchoolAgeCalculatorPage />} />
+            <Route path="/legal-age-calculator" element={<LegalAgeCalculatorPage />} />
+            <Route path="/legal-age-calculator/" element={<LegalAgeCalculatorPage />} />
+            <Route path="/leap-year-calculator" element={<LeapYearCalculatorPage />} />
+            <Route path="/leap-year-calculator/" element={<LeapYearCalculatorPage />} />
+            <Route path="/date-calculator" element={<DateCalculatorPage />} />
+            <Route path="/date-calculator/" element={<DateCalculatorPage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
+            <Route path="/about-us/" element={<AboutUsPage />} />
+            <Route path="/contact-us" element={<ContactUsPage />} />
+            <Route path="/contact-us/" element={<ContactUsPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/privacy-policy/" element={<PrivacyPolicyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/terms/" element={<TermsPage />} />
+            <Route path="/disclaimer" element={<DisclaimerPage />} />
+            <Route path="/disclaimer/" element={<DisclaimerPage />} />
+            <Route path="/how-it-works" element={<HowItWorksPage />} />
+            <Route path="/how-it-works/" element={<HowItWorksPage />} />
           </Routes>
         </main>
         <Footer />

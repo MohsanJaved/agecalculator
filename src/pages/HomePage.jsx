@@ -152,21 +152,44 @@ export default function HomePage() {
 
         <div className="max-w-[1200px] mx-auto space-y-6 relative z-10">
           
-          {/* Centered H1 Title & Subtitle (Clean & Bold like Screenshot!) */}
-          <div className="text-center space-y-2">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight max-w-3xl mx-auto">
+          {/* Centered H1 Title & Subtitle */}
+          <div className="text-center space-y-3">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold bg-white/90 text-calcNavy border border-blue-200/80 shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                <span>#1 Precision Age Calculator</span>
+              </div>
+            </div>
+
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight max-w-4xl mx-auto">
               Age Calculator – Find Out Exactly How Old You Are
             </h1>
 
             <p className="text-slate-600 text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-normal">
-              Calculate your exact age from your date of birth instantly with our accurate, privacy-focused tool.
+              Calculate your exact age in years, months, days, weeks, hours, minutes & seconds from your date of birth instantly with our accurate, privacy-focused tool.
             </p>
+
+            {/* Feature Pills */}
+            <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-[11px] sm:text-xs text-slate-600">
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/85 border border-slate-200/80 font-medium text-slate-700 shadow-2xs">
+                <CheckCircle2 className="w-3 h-3 text-emerald-500 shrink-0" />
+                100% Free & Private
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/85 border border-slate-200/80 font-medium text-slate-700 shadow-2xs">
+                <CheckCircle2 className="w-3 h-3 text-emerald-500 shrink-0" />
+                Instant Millisecond Precision
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/85 border border-slate-200/80 font-medium text-slate-700 shadow-2xs">
+                <CheckCircle2 className="w-3 h-3 text-emerald-500 shrink-0" />
+                Leap Year Calibrated
+              </span>
+            </div>
 
             {/* Quick Example Button */}
             <div className="pt-1 flex items-center justify-center gap-3">
               <button 
                 onClick={loadJohnExample}
-                className="px-3.5 py-1.5 rounded-xl bg-white/90 hover:bg-white text-blue-700 text-xs font-bold border border-blue-200/80 transition-all flex items-center gap-2 shadow-xs hover:shadow-sm"
+                className="px-4 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-calcNavy text-xs font-bold border border-blue-200 shadow-xs transition-all flex items-center gap-2 hover:shadow-sm"
               >
                 <Sparkles className="w-3.5 h-3.5 text-blue-600" />
                 Load John's Example (1997 → 2026)

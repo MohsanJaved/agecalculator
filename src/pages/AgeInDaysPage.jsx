@@ -9,6 +9,8 @@ import {
   CalendarCheck
 } from 'lucide-react';
 
+import PageHero from '../components/PageHero.jsx';
+
 export default function AgeInDaysPage() {
   const [birthDate, setBirthDate] = useState('2005-11-09');
   const [compareDate, setCompareDate] = useState('2026-09-05');
@@ -71,33 +73,29 @@ export default function AgeInDaysPage() {
   };
 
   return (
-    <div className="space-y-12">
-      {/* Quick Example Loader Button */}
-      <div className="flex justify-end">
-        <button 
-          onClick={loadBilalExample}
-          className="px-3.5 py-1.5 rounded bg-calcNavy hover:bg-calcNavy-light text-white text-xs font-semibold border border-blue-400/40 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-          Load Bilal's Example (2005 → 2026)
-        </button>
-      </div>
+    <div className="w-full">
+      <PageHero
+        title="Age in Days Calculator – How Many Days Old Are You?"
+        description="Days are the most precise, universal way to measure your life. Calculate exact days lived, upcoming 10,000-day milestones, and leap days experienced since birth."
+        badge="Age in Days"
+        badgeIcon={Calendar}
+        category="Calculators"
+        currentPage="Age in Days"
+        features={['Exact Calendar Days', '10,000-Day Milestones', '100% Free & Private']}
+        actions={
+          <button 
+            onClick={loadBilalExample}
+            className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-calcNavy text-xs font-bold border border-blue-200 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+            Load Bilal's Example (2005 → 2026)
+          </button>
+        }
+      />
 
-      {/* HERO SECTION */}
-      <section className="space-y-3 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Title Tag: Age in Days Calculator – How Many Days Old Are You?
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Age in Days Calculator – How Many Days Old Are You?
-        </h1>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Days are the simplest, most universal way to measure exactly how long you've been alive — no rounding, no averages, just a precise count from your date of birth to any date you choose.
-        </p>
-      </section>
-
-      {/* INTERACTIVE CALCULATOR WIDGET */}
-      <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+        {/* INTERACTIVE CALCULATOR WIDGET */}
+        <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
         <div className="border-b border-slate-200 pb-4 mb-6 flex items-center justify-between">
           <h2 className="text-xl font-bold text-calcNavy-dark flex items-center gap-2">
             <Calculator className="w-5 h-5 text-calcNavy" />
@@ -443,6 +441,7 @@ export default function AgeInDaysPage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }

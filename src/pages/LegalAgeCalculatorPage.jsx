@@ -14,6 +14,7 @@ import {
   Car,
   FileCheck
 } from 'lucide-react';
+import PageHero from '../components/PageHero.jsx';
 
 export default function LegalAgeCalculatorPage() {
   const [birthDate, setBirthDate] = useState('2009-01-22');
@@ -96,33 +97,29 @@ export default function LegalAgeCalculatorPage() {
   };
 
   return (
-    <div className="space-y-12">
-      {/* Quick Example Loader Buttons */}
-      <div className="flex flex-wrap items-center justify-end gap-2">
-        <button 
-          onClick={loadAliExample}
-          className="px-3.5 py-1.5 rounded bg-calcNavy hover:bg-calcNavy-light text-white text-xs font-semibold border border-blue-400/40 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-          Load Ali's Example (22 Jan 2009 vs 18 Years)
-        </button>
-      </div>
+    <div className="w-full">
+      <PageHero
+        title="Legal Age Calculator – Check Age Requirements & Milestones"
+        description="Verify milestone eligibility including legal adulthood, voting rights, driving permits, alcohol laws, and retirement age thresholds with exact day countdowns."
+        badge="Legal Adulthood & Rights"
+        badgeIcon={Scale}
+        category="Calculators"
+        currentPage="Legal Age Calculator"
+        features={['Threshold Qualification', 'Days Until Eligible', '100% Free & Private']}
+        actions={
+          <button 
+            onClick={loadAliExample}
+            className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-calcNavy text-xs font-bold border border-blue-200 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+            Load Ali's Example (22 Jan 2009 vs 18 Years)
+          </button>
+        }
+      />
 
-      {/* HERO SECTION */}
-      <section className="space-y-3 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Legal Age Calculator
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Legal Age Calculator – Find Out When You Meet an Age Requirement
-        </h1>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Many legal rights and responsibilities kick in only once you reach a specific age — voting, driving, marriage, or entering into a contract, among others. This <a href="https://agecalculator.today/" target="_blank" rel="noopener noreferrer" className="text-calcNavy font-semibold underline hover:text-calcBlue transition-colors">calculator checks your exact age</a> against any legal age threshold, and tells you whether you already qualify or exactly when you will.
-        </p>
-      </section>
-
-      {/* INTERACTIVE CALCULATOR WIDGET */}
-      <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+        {/* INTERACTIVE CALCULATOR WIDGET */}
+        <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
         <div className="border-b border-slate-200 pb-4 mb-6 flex items-center justify-between">
           <h2 className="text-xl font-bold text-calcNavy-dark flex items-center gap-2">
             <Scale className="w-5 h-5 text-calcNavy" />
@@ -509,6 +506,7 @@ export default function LegalAgeCalculatorPage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }

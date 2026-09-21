@@ -14,30 +14,22 @@ import {
   FileCheck
 } from 'lucide-react';
 
+import PageHero from '../../components/PageHero.jsx';
+
 export default function TermsPage() {
   return (
-    <div className="space-y-10 max-w-4xl mx-auto">
-      {/* HERO / TITLE */}
-      <section className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Terms of Service
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Terms and Conditions
-        </h1>
-        <p className="text-slate-700 text-base sm:text-lg leading-relaxed pt-2 border-t border-slate-100">
-          Welcome to{' '}
-          <a 
-            href="http://agecalculator.today/" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-calcNavy font-semibold underline hover:text-calcBlue transition-colors"
-          >
-            Age Calculator
-          </a>
-          . By accessing or using our age, date, and birthday calculators, you agree to follow these Terms and Conditions. If you do not agree with any part of these terms, please do not use the website.
-        </p>
-      </section>
+    <div className="w-full">
+      <PageHero
+        title="Terms and Conditions – Website Usage Terms"
+        description="Review the terms and conditions for utilizing our suite of age, birthday, and date calculators for personal and educational purposes."
+        badge="Terms of Service"
+        badgeIcon={FileText}
+        category="Legal"
+        currentPage="Terms of Service"
+        features={['Free for Personal Use', 'Educational Use Permitted', 'Standard Disclaimer']}
+      />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10">
 
       {/* USE OF OUR WEBSITE */}
       <section className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
@@ -216,6 +208,7 @@ export default function TermsPage() {
           </a>
         </div>
       </section>
+      </div>
     </div>
   );
 }

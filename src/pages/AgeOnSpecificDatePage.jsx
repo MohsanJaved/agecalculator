@@ -9,6 +9,8 @@ import {
   CalendarCheck
 } from 'lucide-react';
 
+import PageHero from '../components/PageHero.jsx';
+
 export default function AgeOnSpecificDatePage() {
   const [birthDate, setBirthDate] = useState('1985-02-14');
   const [targetDate, setTargetDate] = useState('2001-06-15');
@@ -70,40 +72,38 @@ export default function AgeOnSpecificDatePage() {
   };
 
   return (
-    <div className="space-y-12">
-      {/* Quick Example Loader Buttons */}
-      <div className="flex flex-wrap items-center justify-end gap-2">
-        <button 
-          onClick={loadPastExample}
-          className="px-3.5 py-1.5 rounded bg-calcNavy hover:bg-calcNavy-light text-white text-xs font-semibold border border-blue-400/40 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-          Example 1 — Past Date (Graduation 2001)
-        </button>
-        <button 
-          onClick={loadFutureExample}
-          className="px-3.5 py-1.5 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold border border-slate-600 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-          Example 2 — Future Date (Retirement 2030)
-        </button>
-      </div>
+    <div className="w-full">
+      <PageHero
+        title="Age on Specific Date Calculator – Find Age on Any Day"
+        description="Calculate your exact age on any historical past date or future milestone. Perfect for exam eligibility, retirement planning, visa applications, and career milestones."
+        badge="Historical & Future Dates"
+        badgeIcon={Calendar}
+        category="Calculators"
+        currentPage="Age on Specific Date"
+        features={['Past & Future Dates', 'Eligibility Checking', '100% Free & Private']}
+        actions={
+          <>
+            <button 
+              onClick={loadPastExample}
+              className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-calcNavy text-xs font-bold border border-blue-200 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              Past Date (Graduation 2001)
+            </button>
+            <button 
+              onClick={loadFutureExample}
+              className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold border border-slate-700 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
+              Future Date (Retirement 2030)
+            </button>
+          </>
+        }
+      />
 
-      {/* HERO SECTION */}
-      <section className="space-y-3 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Age on a Specific Date Calculator
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Age on a Specific Date Calculator – Find Your Age on Any Day
-        </h1>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Sometimes "today" isn't the date you actually need. Maybe you're checking eligibility for an exam, working out someone's age at a past event, or confirming how old you'll be on a future deadline. This tool lets you calculate the exact age on any date you choose — past, present, or future.
-        </p>
-      </section>
-
-      {/* INTERACTIVE CALCULATOR WIDGET */}
-      <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+        {/* INTERACTIVE CALCULATOR WIDGET */}
+        <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
         <div className="border-b border-slate-200 pb-4 mb-6 flex items-center justify-between">
           <h2 className="text-xl font-bold text-calcNavy-dark flex items-center gap-2">
             <Calculator className="w-5 h-5 text-calcNavy" />
@@ -424,6 +424,7 @@ export default function AgeOnSpecificDatePage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }

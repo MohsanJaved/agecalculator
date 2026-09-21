@@ -13,6 +13,7 @@ import {
   CalendarDays,
   Layers
 } from 'lucide-react';
+import PageHero from '../components/PageHero.jsx';
 
 export default function DateCalculatorPage() {
   const [activeTab, setActiveTab] = useState('difference'); // 'difference' or 'add_subtract'
@@ -150,299 +151,278 @@ export default function DateCalculatorPage() {
   };
 
   return (
-    <div className="space-y-12">
-      {/* Quick Example Loader Buttons */}
-      <div className="flex flex-wrap items-center justify-end gap-2">
-        <button 
-          onClick={loadProjectExample}
-          className="px-3.5 py-1.5 rounded bg-calcNavy hover:bg-calcNavy-light text-white text-xs font-semibold border border-blue-400/40 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-          Project Diff (15 Mar 2025 → 20 Nov 2026)
-        </button>
-        <button 
-          onClick={loadAdd60Days}
-          className="px-3.5 py-1.5 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold border border-slate-600 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-green-300" />
-          5 Sept 2026 + 60 Days
-        </button>
-        <button 
-          onClick={loadSub90Days}
-          className="px-3.5 py-1.5 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold border border-slate-600 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-          5 Sept 2026 − 90 Days
-        </button>
-      </div>
-
-      {/* HERO SECTION */}
-      <section className="space-y-3 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Date Calculator
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Date Calculator – Find the Difference between Dates or Add/Subtract Days
-        </h1>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Use our <strong>Date Calculator</strong> to find the exact amount of time between two dates. Enter a start date and an end date to calculate the number of days, weeks, months, or years between them.
-        </p>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Not every date question is about age. Sometimes you need to know how long a project ran, how many days are left until a deadline, or what date falls a certain number of days before or after another. This tool handles both: the exact difference between two dates, and adding or subtracting days, weeks, months, or years from a date.
-        </p>
-      </section>
-
-      {/* INTERACTIVE CALCULATOR WIDGET */}
-      <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
-        <div className="border-b border-slate-200 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <Calculator className="w-5 h-5 text-calcNavy" />
-            <h2 className="text-xl font-bold text-calcNavy-dark">
-              Date Difference & Day Addition Calculator
-            </h2>
-          </div>
-
-          {/* Mode Switcher Tabs */}
-          <div className="flex bg-[#f1f5f9] p-1 rounded-xl border border-slate-200 self-start sm:self-auto">
-            <button
-              onClick={() => setActiveTab('difference')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                activeTab === 'difference'
-                  ? 'bg-calcNavy text-white shadow-sm'
-                  : 'text-slate-600 hover:text-calcNavy'
-              }`}
+    <div className="w-full">
+      <PageHero
+        title="Date Calculator – Days Between Dates & Add/Subtract Days"
+        description="Calculate the exact difference between any two dates or quickly add/subtract days from a starting calendar date with dual calculation engines."
+        badge="Calendar & Date Mathematics"
+        badgeIcon={CalendarDays}
+        category="Calculators"
+        currentPage="Date Calculator"
+        features={['Days Between Dates', 'Add & Subtract Days', '100% Free & Private']}
+        actions={
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <button 
+              onClick={loadProjectExample}
+              className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-calcNavy text-xs font-bold border border-blue-200 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
             >
-              Days Between Dates
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              Project Diff (15 Mar 2025 → 20 Nov 2026)
             </button>
-            <button
-              onClick={() => setActiveTab('add_subtract')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                activeTab === 'add_subtract'
-                  ? 'bg-calcNavy text-white shadow-sm'
-                  : 'text-slate-600 hover:text-calcNavy'
-              }`}
+            <button 
+              onClick={loadAdd60Days}
+              className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold border border-slate-700 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
             >
-              Add / Subtract Days
+              <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
+              Today + 60 Days
+            </button>
+            <button 
+              onClick={loadSub90Days}
+              className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-300 shadow-xs transition-all flex items-center gap-1.5"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
+              Today − 90 Days
             </button>
           </div>
-        </div>
+        }
+      />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* TAB 1: DIFFERENCE INPUTS */}
-          {activeTab === 'difference' ? (
-            <>
-              <div className="lg:col-span-5 space-y-4 bg-[#f8fafc] border border-slate-200 p-5 sm:p-6 rounded-xl">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-200">
-                  <span className="font-bold text-sm text-calcNavy flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-calcNavy" />
-                    Date Difference Inputs
-                  </span>
-                  <span className="text-xs text-slate-500 font-medium">Full Calendar</span>
-                </div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+        {/* INTERACTIVE CALCULATOR WIDGET */}
+        <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
+          <div className="border-b border-slate-200 pb-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <Calculator className="w-5 h-5 text-calcNavy" />
+              <h2 className="text-xl font-bold text-calcNavy-dark">
+                Date Difference & Day Addition Calculator
+              </h2>
+            </div>
 
-                {/* Start Date */}
-                <div className="space-y-1.5">
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide">
-                    Start Date
-                  </label>
-                  <input
-                    type="date"
-                    value={startDate}
-                    onChange={(e) => setStartDate(e.target.value)}
-                    className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-calcBlue focus:border-transparent transition-all shadow-inner"
-                  />
-                </div>
+            {/* Mode Switcher Tabs */}
+            <div className="flex bg-[#f1f5f9] p-1 rounded-xl border border-slate-200 self-start sm:self-auto">
+              <button
+                onClick={() => setActiveTab('difference')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  activeTab === 'difference'
+                    ? 'bg-calcNavy text-white shadow-sm'
+                    : 'text-slate-600 hover:text-calcNavy'
+                }`}
+              >
+                Days Between Dates
+              </button>
+              <button
+                onClick={() => setActiveTab('add_subtract')}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  activeTab === 'add_subtract'
+                    ? 'bg-calcNavy text-white shadow-sm'
+                    : 'text-slate-600 hover:text-calcNavy'
+                }`}
+              >
+                Add / Subtract Days
+              </button>
+            </div>
+          </div>
 
-                {/* End Date */}
-                <div className="space-y-1.5 pt-1">
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide">
-                    End Date
-                  </label>
-                  <input
-                    type="date"
-                    value={endDate}
-                    onChange={(e) => setEndDate(e.target.value)}
-                    className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-calcBlue focus:border-transparent transition-all shadow-inner"
-                  />
-                </div>
-
-                {/* Calculate Button */}
-                <div className="pt-2">
-                  <button
-                    type="button"
-                    className="w-full py-2.5 bg-calcGreen hover:bg-calcGreen-hover text-white text-base font-bold rounded-lg shadow transition-colors flex items-center justify-center gap-2 cursor-default"
-                  >
-                    <Calculator className="w-5 h-5" />
-                    Calculate Difference
-                  </button>
-                </div>
-              </div>
-
-              {/* TAB 1: RESULTS */}
-              <div className="lg:col-span-7 space-y-4">
-                {differenceResult ? (
-                  <>
-                    <div className="bg-calcGreen-light border border-calcGreen-border rounded-xl p-5 shadow-sm space-y-3">
-                      <div className="text-xs font-bold uppercase tracking-wider text-calcGreen">
-                        Calculated Date Difference
-                      </div>
-
-                      <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-calcNavy-dark leading-snug">
-                        {differenceResult.years > 0 && `${differenceResult.years} year${differenceResult.years > 1 ? 's' : ''}, `}
-                        {differenceResult.months} months, and {differenceResult.days} days
-                      </div>
-
-                      <div className="text-sm sm:text-base text-slate-700 font-semibold flex flex-wrap items-center gap-2 pt-1 border-t border-calcGreen-border/50">
-                        <span>— or <span className="text-calcNavy font-bold">{differenceResult.totalDays.toLocaleString()} days</span></span>
-                        <span>— or <span className="text-calcNavy font-bold">{differenceResult.totalWeeks} weeks and {differenceResult.remainingDaysInWeek} days</span></span>
-                      </div>
-                    </div>
-
-                    <div className="bg-[#f8fafc] border border-slate-200 rounded-xl p-4 space-y-1.5 text-xs text-slate-700">
-                      <div className="font-bold text-calcNavy flex items-center gap-1.5">
-                        <Clock className="w-4 h-4 text-calcNavy" />
-                        Time Span Range
-                      </div>
-                      <div>From: <strong>{startDate}</strong> to <strong>{endDate}</strong></div>
-                      <div>Total Days: <strong>{differenceResult.totalDays.toLocaleString()} days</strong></div>
-                    </div>
-                  </>
-                ) : (
-                  <div className="p-8 text-center bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
-                    Please enter valid start and end dates.
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* TAB 1: DIFFERENCE INPUTS */}
+            {activeTab === 'difference' ? (
+              <>
+                <div className="lg:col-span-5 space-y-4 bg-[#f8fafc] border border-slate-200 p-5 sm:p-6 rounded-xl">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200">
+                    <span className="font-bold text-sm text-calcNavy flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-calcNavy" />
+                      Date Difference Inputs
+                    </span>
+                    <span className="text-xs text-slate-500 font-medium">Full Calendar</span>
                   </div>
-                )}
-              </div>
-            </>
-          ) : (
-            /* TAB 2: ADD / SUBTRACT INPUTS & RESULTS */
-            <>
-              <div className="lg:col-span-5 space-y-4 bg-[#f8fafc] border border-slate-200 p-5 sm:p-6 rounded-xl">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-200">
-                  <span className="font-bold text-sm text-calcNavy flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-calcNavy" />
-                    Add / Subtract Inputs
-                  </span>
-                  <span className="text-xs text-slate-500 font-medium">Calendar Math</span>
-                </div>
 
-                {/* Base Date */}
-                <div className="space-y-1.5">
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide">
-                    Starting Date
-                  </label>
-                  <input
-                    type="date"
-                    value={baseDate}
-                    onChange={(e) => setBaseDate(e.target.value)}
-                    className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-calcBlue focus:border-transparent transition-all shadow-inner"
-                  />
-                </div>
+                  {/* Start Date */}
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide">
+                      Start Date
+                    </label>
+                    <input
+                      type="date"
+                      value={startDate}
+                      onChange={(e) => setStartDate(e.target.value)}
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-calcBlue focus:border-transparent transition-all shadow-inner"
+                    />
+                  </div>
 
-                {/* Operation Toggle */}
-                <div className="space-y-1.5 pt-1">
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide">
-                    Operation
-                  </label>
-                  <div className="grid grid-cols-2 gap-2">
+                  {/* End Date */}
+                  <div className="space-y-1.5 pt-1">
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide">
+                      End Date
+                    </label>
+                    <input
+                      type="date"
+                      value={endDate}
+                      onChange={(e) => setEndDate(e.target.value)}
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-calcBlue focus:border-transparent transition-all shadow-inner"
+                    />
+                  </div>
+
+                  {/* Calculate Button */}
+                  <div className="pt-2">
                     <button
                       type="button"
-                      onClick={() => setOperation('add')}
-                      className={`py-2 px-3 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 border transition-colors ${
-                        operation === 'add'
-                          ? 'bg-calcNavy text-white border-calcNavy'
-                          : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100'
-                      }`}
+                      className="w-full py-2.5 bg-calcGreen hover:bg-calcGreen-hover text-white text-base font-bold rounded-lg shadow transition-colors flex items-center justify-center gap-2 cursor-default"
                     >
-                      <PlusCircle className="w-4 h-4" />
-                      Add (+)
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setOperation('subtract')}
-                      className={`py-2 px-3 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 border transition-colors ${
-                        operation === 'subtract'
-                          ? 'bg-calcNavy text-white border-calcNavy'
-                          : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100'
-                      }`}
-                    >
-                      <MinusCircle className="w-4 h-4" />
-                      Subtract (−)
+                      <Calculator className="w-5 h-5" />
+                      Calculate Difference
                     </button>
                   </div>
                 </div>
 
-                {/* Number of Days */}
-                <div className="space-y-1.5 pt-1">
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide">
-                    Number of Days
-                  </label>
-                  <input
-                    type="number"
-                    min="1"
-                    value={daysAmount}
-                    onChange={(e) => setDaysAmount(e.target.value)}
-                    placeholder="e.g. 60"
-                    className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-calcBlue focus:border-transparent transition-all"
-                  />
-                </div>
+                {/* TAB 1: RESULTS */}
+                <div className="lg:col-span-7 space-y-4">
+                  {differenceResult ? (
+                    <>
+                      <div className="bg-calcGreen-light border border-calcGreen-border rounded-xl p-5 shadow-sm space-y-3">
+                        <div className="text-xs font-bold uppercase tracking-wider text-calcGreen">
+                          Calculated Date Difference
+                        </div>
 
-                {/* Calculate Button */}
-                <div className="pt-2">
-                  <button
-                    type="button"
-                    className="w-full py-2.5 bg-calcGreen hover:bg-calcGreen-hover text-white text-base font-bold rounded-lg shadow transition-colors flex items-center justify-center gap-2 cursor-default"
-                  >
-                    <Calculator className="w-5 h-5" />
-                    Calculate Result Date
-                  </button>
-                </div>
-              </div>
+                        <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-calcNavy-dark leading-snug">
+                          {differenceResult.years > 0 && `${differenceResult.years} year${differenceResult.years > 1 ? 's' : ''}, `}
+                          {differenceResult.months} months, and {differenceResult.days} days
+                        </div>
 
-              {/* TAB 2: RESULTS */}
-              <div className="lg:col-span-7 space-y-4">
-                {addSubtractResult ? (
-                  <>
-                    <div className="bg-calcGreen-light border border-calcGreen-border rounded-xl p-5 shadow-sm space-y-3">
-                      <div className="text-xs font-bold uppercase tracking-wider text-calcGreen">
-                        Resulting Calculated Date
+                        <div className="text-sm sm:text-base text-slate-700 font-semibold flex flex-wrap items-center gap-2 pt-1 border-t border-calcGreen-border/50">
+                          <span>— or <span className="text-calcNavy font-bold">{differenceResult.totalDays.toLocaleString()} days</span></span>
+                          <span>— or <span className="text-calcNavy font-bold">{differenceResult.totalWeeks} weeks and {differenceResult.remainingDaysInWeek} days</span></span>
+                        </div>
                       </div>
 
-                      <div className="text-2xl sm:text-3xl font-extrabold text-calcNavy-dark">
-                        {addSubtractResult.formattedDate}
+                      <div className="bg-[#f8fafc] border border-slate-200 rounded-xl p-4 space-y-1.5 text-xs text-slate-700">
+                        <div className="font-bold text-calcNavy flex items-center gap-1.5">
+                          <Clock className="w-4 h-4 text-calcNavy" />
+                          Time Span Range
+                        </div>
+                        <div>From: <strong>{startDate}</strong> to <strong>{endDate}</strong></div>
+                        <div>Total Days: <strong>{differenceResult.totalDays.toLocaleString()} days</strong></div>
                       </div>
-
-                      <div className="text-sm font-semibold text-slate-700">
-                        Falls on a <strong>{addSubtractResult.weekday}</strong>
-                      </div>
+                    </>
+                  ) : (
+                    <div className="p-8 text-center bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
+                      Please enter valid start and end dates.
                     </div>
-
-                    <div className="bg-[#f8fafc] border border-slate-200 rounded-xl p-4 space-y-1.5 text-xs text-slate-700">
-                      <div className="font-bold text-calcNavy flex items-center gap-1.5">
-                        <Clock className="w-4 h-4 text-calcNavy" />
-                        Calculation Detail
-                      </div>
-                      <div>
-                        Starting Date: <strong>{baseDate}</strong>
-                      </div>
-                      <div>
-                        Offset: <strong>{addSubtractResult.operationText}</strong>
-                      </div>
-                      <div>
-                        Target Date: <strong>{addSubtractResult.resultDateStr}</strong>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <div className="p-8 text-center bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
-                    Please enter valid starting date and number of days.
+                  )}
+                </div>
+              </>
+            ) : (
+              /* TAB 2: ADD / SUBTRACT INPUTS & RESULTS */
+              <>
+                <div className="lg:col-span-5 space-y-4 bg-[#f8fafc] border border-slate-200 p-5 sm:p-6 rounded-xl">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-200">
+                    <span className="font-bold text-sm text-calcNavy flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-calcNavy" />
+                      Add / Subtract Inputs
+                    </span>
+                    <span className="text-xs text-slate-500 font-medium">Calendar Math</span>
                   </div>
-                )}
-              </div>
-            </>
-          )}
-        </div>
-      </section>
+
+                  {/* Base Date */}
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide">
+                      Starting Date
+                    </label>
+                    <input
+                      type="date"
+                      value={baseDate}
+                      onChange={(e) => setBaseDate(e.target.value)}
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-calcBlue focus:border-transparent transition-all shadow-inner"
+                    />
+                  </div>
+
+                  {/* Operation Toggle */}
+                  <div className="space-y-1.5 pt-1">
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide">
+                      Operation
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setOperation('add')}
+                        className={`py-2 px-3 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 border transition-colors ${
+                          operation === 'add'
+                            ? 'bg-calcNavy text-white border-calcNavy'
+                            : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100'
+                        }`}
+                      >
+                        <PlusCircle className="w-4 h-4" />
+                        Add (+)
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setOperation('subtract')}
+                        className={`py-2 px-3 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 border transition-colors ${
+                          operation === 'subtract'
+                            ? 'bg-calcNavy text-white border-calcNavy'
+                            : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-100'
+                        }`}
+                      >
+                        <MinusCircle className="w-4 h-4" />
+                        Subtract (−)
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Number of Days */}
+                  <div className="space-y-1.5 pt-1">
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide">
+                      Number of Days
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      value={daysAmount}
+                      onChange={(e) => setDaysAmount(e.target.value)}
+                      placeholder="e.g. 60"
+                      className="w-full bg-white border border-slate-300 rounded-lg px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-calcBlue focus:border-transparent transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* TAB 2: RESULTS */}
+                <div className="lg:col-span-7 space-y-4">
+                  {addSubtractResult ? (
+                    <>
+                      <div className="bg-calcGreen-light border border-calcGreen-border rounded-xl p-5 shadow-sm space-y-3">
+                        <div className="text-xs font-bold uppercase tracking-wider text-calcGreen">
+                          Calculated Target Date
+                        </div>
+
+                        <div className="text-xl sm:text-2xl md:text-3xl font-extrabold text-calcNavy-dark leading-snug">
+                          {addSubtractResult.formattedDate} ({addSubtractResult.weekday})
+                        </div>
+
+                        <div className="text-sm sm:text-base text-slate-700 font-semibold pt-1 border-t border-calcGreen-border/50">
+                          Result: <span className="text-calcNavy font-bold">{addSubtractResult.operationText}</span> from {baseDate}
+                        </div>
+                      </div>
+
+                      <div className="bg-[#f8fafc] border border-slate-200 rounded-xl p-4 space-y-1.5 text-xs text-slate-700">
+                        <div className="font-bold text-calcNavy flex items-center gap-1.5">
+                          <Clock className="w-4 h-4 text-calcNavy" />
+                          Calculation Summary
+                        </div>
+                        <div>Base Date: <strong>{baseDate}</strong></div>
+                        <div>Operation: <strong>{operation === 'add' ? 'Addition' : 'Subtraction'}</strong></div>
+                        <div>Days Amount: <strong>{daysAmount} days</strong></div>
+                        <div>ISO Date: <strong>{addSubtractResult.resultDateStr}</strong></div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="p-8 text-center bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
+                      Please enter a valid base date and number of days.
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
+        </section>
 
       {/* SECTION: FINDING THE DIFFERENCE BETWEEN TWO DATES */}
       <section className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-4">
@@ -684,6 +664,7 @@ export default function DateCalculatorPage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }

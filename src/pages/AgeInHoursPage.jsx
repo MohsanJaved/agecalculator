@@ -9,6 +9,8 @@ import {
   CalendarCheck
 } from 'lucide-react';
 
+import PageHero from '../components/PageHero.jsx';
+
 export default function AgeInHoursPage() {
   const [birthDate, setBirthDate] = useState('1995-06-03');
   const [birthTime, setBirthTime] = useState('00:00');
@@ -78,33 +80,29 @@ export default function AgeInHoursPage() {
   };
 
   return (
-    <div className="space-y-12">
-      {/* Quick Example Loader Button */}
-      <div className="flex justify-end">
-        <button 
-          onClick={loadFatimaExample}
-          className="px-3.5 py-1.5 rounded bg-calcNavy hover:bg-calcNavy-light text-white text-xs font-semibold border border-blue-400/40 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-          Load Fatima's Example (1995 → 2026)
-        </button>
-      </div>
+    <div className="w-full">
+      <PageHero
+        title="Age in Hours Calculator – How Many Hours Old Are You?"
+        description="Convert your age into exact total hours lived. View fascinating biological statistics including estimated heartbeats and breaths since birth."
+        badge="Age in Hours"
+        badgeIcon={Calendar}
+        category="Calculators"
+        currentPage="Age in Hours"
+        features={['Exact Elapsed Hours', 'Biological Heartbeat Stats', '100% Free & Private']}
+        actions={
+          <button 
+            onClick={loadFatimaExample}
+            className="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-calcNavy text-xs font-bold border border-blue-200 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+            Load Fatima's Example (1995 → 2026)
+          </button>
+        }
+      />
 
-      {/* HERO SECTION */}
-      <section className="space-y-3 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Title Tag: Age in Hours Calculator – How Many Hours Old Are You?
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Age in Hours Calculator – How Many Hours Old Am I?
-        </h1>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          Want your age in hours instead of years? This tool does the math for you. Just enter your date of birth.
-        </p>
-      </section>
-
-      {/* INTERACTIVE CALCULATOR WIDGET */}
-      <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+        {/* INTERACTIVE CALCULATOR WIDGET */}
+        <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
         <div className="border-b border-slate-200 pb-4 mb-6 flex items-center justify-between">
           <h2 className="text-xl font-bold text-calcNavy-dark flex items-center gap-2">
             <Calculator className="w-5 h-5 text-calcNavy" />
@@ -468,6 +466,7 @@ export default function AgeInHoursPage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }

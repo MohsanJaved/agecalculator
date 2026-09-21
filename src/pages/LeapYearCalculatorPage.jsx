@@ -14,6 +14,8 @@ import {
   AlertCircle
 } from 'lucide-react';
 
+import PageHero from '../components/PageHero.jsx';
+
 export default function LeapYearCalculatorPage() {
   const [yearInput, setYearInput] = useState('2028');
   const [openFaq, setOpenFaq] = useState(null);
@@ -62,52 +64,49 @@ export default function LeapYearCalculatorPage() {
   };
 
   return (
-    <div className="space-y-12">
-      {/* Quick Example Loader Buttons */}
-      <div className="flex flex-wrap items-center justify-end gap-2">
-        <button 
-          onClick={() => setYearInput('2027')}
-          className="px-3 py-1.5 rounded bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold border border-slate-600 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-yellow-300" />
-          Check 2027 (Not Leap)
-        </button>
-        <button 
-          onClick={() => setYearInput('2028')}
-          className="px-3 py-1.5 rounded bg-calcNavy hover:bg-calcNavy-light text-white text-xs font-semibold border border-blue-400/40 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          <Sparkles className="w-3.5 h-3.5 text-green-300" />
-          Check 2028 (Leap)
-        </button>
-        <button 
-          onClick={() => setYearInput('2000')}
-          className="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold border border-slate-700 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          2000 (Century Leap)
-        </button>
-        <button 
-          onClick={() => setYearInput('2100')}
-          className="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold border border-slate-700 transition-colors flex items-center gap-1.5 shadow-sm"
-        >
-          2100 (Century Non-Leap)
-        </button>
-      </div>
+    <div className="w-full">
+      <PageHero
+        title="Leap Year Calculator – Is a Year a Leap Year?"
+        description="Verify whether any calendar year is a leap year with instant astronomical logic. Discover Gregorian calendar rules, leap centuries, and leap day birthdays."
+        badge="Astronomical & Calendar Math"
+        badgeIcon={Calendar}
+        category="Calculators"
+        currentPage="Leap Year Calculator"
+        features={['4, 100, 400 Rule Verification', 'Century Rule Logic', '100% Free & Private']}
+        actions={
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <button 
+              onClick={() => setYearInput('2028')}
+              className="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-calcNavy text-xs font-bold border border-blue-200 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+              Check 2028 (Leap)
+            </button>
+            <button 
+              onClick={() => setYearInput('2027')}
+              className="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold border border-slate-700 shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm"
+            >
+              Check 2027 (Not Leap)
+            </button>
+            <button 
+              onClick={() => setYearInput('2000')}
+              className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-300 shadow-xs transition-all"
+            >
+              2000 (Century Leap)
+            </button>
+            <button 
+              onClick={() => setYearInput('2100')}
+              className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-300 shadow-xs transition-all"
+            >
+              2100 (Century Non-Leap)
+            </button>
+          </div>
+        }
+      />
 
-      {/* HERO SECTION */}
-      <section className="space-y-3 bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
-        <div className="inline-block px-3 py-1 rounded bg-calcBlue-light text-calcBlue text-xs font-semibold border border-blue-100">
-          Leap Year Calculator
-        </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-calcNavy-dark tracking-tight">
-          Leap Year Calculator – Is a Year a Leap Year?
-        </h1>
-        <p className="text-slate-700 text-sm sm:text-base leading-relaxed">
-          A leap year adds one extra day, 29 February, to keep our calendar in sync with Earth's orbit around the sun. This tool checks whether any year you enter is a leap year, and explains exactly why.
-        </p>
-      </section>
-
-      {/* INTERACTIVE CALCULATOR WIDGET */}
-      <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-12">
+        {/* INTERACTIVE CALCULATOR WIDGET */}
+        <section className="bg-white border-2 border-calcNavy/20 rounded-2xl p-6 sm:p-8 shadow-md">
         <div className="border-b border-slate-200 pb-4 mb-6 flex items-center justify-between">
           <h2 className="text-xl font-bold text-calcNavy-dark flex items-center gap-2">
             <Calendar className="w-5 h-5 text-calcNavy" />
@@ -399,6 +398,7 @@ export default function LeapYearCalculatorPage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }
