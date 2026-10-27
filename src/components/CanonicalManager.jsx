@@ -4,7 +4,6 @@ import { SITE_URL, LANGUAGES, DEFAULT_LANGUAGE } from '../i18n/config';
 import { resolveLanguage, resolvePageId, getAllHreflangLinks, normalizePath } from '../i18n/routeMap';
 import { TRANSLATIONS } from '../i18n/translations';
 
-// English baseline page metadata
 const BASE_PAGE_METADATA = {
   home: {
     title: 'Age Calculator Today – Find Exact Age in Years, Months & Days',
