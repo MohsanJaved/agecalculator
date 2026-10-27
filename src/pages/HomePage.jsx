@@ -11,8 +11,11 @@ import {
   CalendarCheck,
   ShieldCheck
 } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function HomePage() {
+  const { t, currentLang, formatDate } = useLanguage();
+
   // Calculator states
   const [birthDate, setBirthDate] = useState('1997-10-13');
   const [birthTime, setBirthTime] = useState('00:00');
@@ -75,12 +78,13 @@ export default function HomePage() {
     const nextBdayDiffMs = nextBday - compareDateOnly;
     const nextBdayDays = Math.ceil(nextBdayDiffMs / (1000 * 60 * 60 * 24));
     const nextBdayWeeks = Math.floor(nextBdayDays / 7);
-    const nextBdayWeekday = nextBday.toLocaleDateString('en-US', { weekday: 'long' });
-    const nextBdayFormatted = nextBday.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+    const localeStr = t?.locale || 'en-US';
+    const nextBdayWeekday = nextBday.toLocaleDateString(localeStr, { weekday: 'long' });
+    const nextBdayFormatted = nextBday.toLocaleDateString(localeStr, { day: 'numeric', month: 'long', year: 'numeric' });
     const turningAge = nextBdayYear - bY;
 
-    const birthShortFormatted = birth.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-    const targetShortFormatted = target.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    const birthShortFormatted = birth.toLocaleDateString(localeStr, { day: '2-digit', month: 'short', year: 'numeric' });
+    const targetShortFormatted = target.toLocaleDateString(localeStr, { day: '2-digit', month: 'short', year: 'numeric' });
 
     const currentTotalYears = years + (months / 12) + (days / 365.25);
     const nextMilestoneAge = Math.ceil((years + 1) / 10) * 10;
@@ -162,11 +166,11 @@ export default function HomePage() {
             </div>
 
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight max-w-4xl mx-auto">
-              Age Calculator – Find Out Exactly How Old You Are
+              {t?.pages?.home?.h1 || 'Age Calculator – Find Out Exactly How Old You Are'}
             </h1>
 
             <p className="text-slate-600 text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed font-normal">
-              Calculate your exact age in years, months, days, weeks, hours, minutes & seconds from your date of birth instantly with our accurate, privacy-focused tool.
+              {t?.pages?.home?.subtitle || 'Calculate your exact age in years, months, days, weeks, hours, minutes & seconds from your date of birth instantly with our accurate, privacy-focused tool.'}
             </p>
 
             {/* Feature Pills */}
@@ -225,7 +229,7 @@ export default function HomePage() {
                   {/* DOB */}
                   <div className="space-y-1">
                     <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">
-                      DATE OF BIRTH
+                      {t?.calculator?.dobLabel || 'DATE OF BIRTH'}
                     </label>
                     <input
                       type="date"
@@ -239,13 +243,13 @@ export default function HomePage() {
                   <div className="space-y-1">
                     <div className="flex items-center justify-between">
                       <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">
-                        DATE TO COMPARE
+                        {t?.calculator?.compareDateLabel || 'DATE TO COMPARE'}
                       </label>
                       <button
                         onClick={setTodayCompareDate}
                         className="text-[10px] text-blue-600 hover:text-blue-800 font-bold hover:underline"
                       >
-                        Set to Today
+                        {t?.calculator?.todayBtn || 'Set to Today'}
                       </button>
                     </div>
                     <input

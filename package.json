@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node src/i18n/generate_sitemap.mjs && node src/i18n/prerender.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
