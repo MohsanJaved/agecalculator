@@ -24,7 +24,6 @@ import TermsPage from './pages/utilities/TermsPage.jsx';
 import DisclaimerPage from './pages/utilities/DisclaimerPage.jsx';
 import HowItWorksPage from './pages/utilities/HowItWorksPage.jsx';
 import CanonicalManager from './components/CanonicalManager.jsx';
-import LanguageBanner from './components/LanguageBanner.jsx';
 import { LanguageProvider } from './i18n/LanguageContext.jsx';
 import { PAGE_MAP, resolvePageId } from './i18n/routeMap.js';
 
@@ -81,7 +80,6 @@ export default function App() {
     <Router>
       <LanguageProvider>
         <CanonicalManager />
-        <LanguageBanner />
         <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col justify-between font-sans">
           <Header />
           <main className="w-full flex-grow">

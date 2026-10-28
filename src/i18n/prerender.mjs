@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import { LANGUAGES, DEFAULT_LANGUAGE, SITE_URL } from './config.js';
 import { PAGE_MAP, resolvePageId, getAllHreflangLinks } from './routeMap.js';
 import { TRANSLATIONS } from './translations.js';
-import { getPageContent } from './pageContent.js';
+import { getHomePageData } from './homePageData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -39,7 +39,7 @@ let count = 0;
 for (const { pageId, langKey, slug } of pagesToPrerender) {
   const langInfo = LANGUAGES[langKey] || LANGUAGES[DEFAULT_LANGUAGE];
   const t = TRANSLATIONS[langKey] || TRANSLATIONS[DEFAULT_LANGUAGE];
-  const content = getPageContent(langKey);
+  const pageData = getHomePageData(langKey);
   const targetUrl = slug === '' ? `${SITE_URL}/` : `${SITE_URL}/${slug}`;
   const isRtl = langInfo.dir === 'rtl';
 
@@ -50,9 +50,9 @@ for (const { pageId, langKey, slug } of pagesToPrerender) {
   if (t?.pages?.[pageId]) {
     if (t.pages[pageId].title) title = t.pages[pageId].title;
     if (t.pages[pageId].description) desc = t.pages[pageId].description;
-  } else if (content.hero?.title) {
-    title = `${content.hero.title} | ${SITE_URL}`;
-    desc = content.hero.subtitle;
+  } else if (pageData.hero?.title) {
+    title = `${pageData.hero.title} | ${SITE_URL}`;
+    desc = pageData.hero.subtitle;
   }
 
   // 2. hreflang tags
@@ -85,27 +85,28 @@ for (const { pageId, langKey, slug } of pagesToPrerender) {
   html = html.replace(/<\/head>/i, `${canonicalHtml}${hreflangHtml}  </head>`);
 
   // 5. Generate rich localized crawlable markup for Googlebot inside <div id="root">
-  const heroBadge = content.hero?.badge || 'Precision Age Calculator';
-  const heroTitle = content.hero?.title || 'Age Calculator';
-  const heroSubtitle = content.hero?.subtitle || '';
-  const pills = content.hero?.featurePills || ['100% Free & Private', 'Instant Precision', 'Leap Year Calibrated'];
+  const heroBadge = pageData.hero?.badge || 'Precision Age Calculator';
+  const heroTitle = pageData.hero?.title || 'Age Calculator';
+  const heroSubtitle = pageData.hero?.subtitle || '';
+  const pills = pageData.hero?.pills || ['100% Free & Private', 'Instant Precision', 'Leap Year Calibrated'];
 
-  const birthLabel = t?.calculator?.dateOfBirth || 'Date of Birth';
-  const compareLabel = t?.calculator?.ageAtDate || 'Age at the Date of';
-  const calcBtn = t?.calculator?.calculateBtn || 'Calculate Age';
-  const clearBtn = t?.calculator?.clearBtn || 'Clear';
+  const birthLabel = pageData.calculator?.dateOfBirth || 'Date of Birth';
+  const compareLabel = pageData.calculator?.ageAtDate || 'Age at the Date of';
+  const calcBtn = pageData.calculator?.calculateBtn || 'Calculate Age';
+  const clearBtn = pageData.calculator?.clearBtn || 'Clear';
 
-  const yearsUnit = t?.units?.years || 'years';
-  const monthsUnit = t?.units?.months || 'months';
-  const daysUnit = t?.units?.days || 'days';
-  const hoursUnit = t?.units?.hours || 'hours';
-  const minutesUnit = t?.units?.minutes || 'minutes';
-  const secondsUnit = t?.units?.seconds || 'seconds';
+  const yearsUnit = pageData.results?.years || 'years';
+  const monthsUnit = pageData.results?.months || 'months';
+  const daysUnit = pageData.results?.days || 'days';
+  const hoursUnit = pageData.results?.hours || 'hours';
+  const minutesUnit = pageData.results?.minutes || 'minutes';
+  const secondsUnit = pageData.results?.seconds || 'seconds';
 
-  const features = content.features3 || [];
-  const steps = content.howItWorks?.steps || [];
-  const useCases = content.useCases?.items || [];
-  const faqs = content.faqs || [];
+  const features = pageData.features3 || [];
+  const steps = pageData.howItWorks?.steps || [];
+  const useCases = pageData.useCases?.items || [];
+  const tools = pageData.toolsSection?.tools || [];
+  const faqs = pageData.faqsSection?.faqs || [];
 
   // 33 Languages Directory Links for Crawlers
   const langLinksHtml = Object.entries(LANGUAGES).map(([code, info]) => {
@@ -134,7 +135,7 @@ for (const { pageId, langKey, slug } of pagesToPrerender) {
         <!-- Hero Section -->
         <header style="text-align: center; margin-bottom: 30px;">
           <div style="display: inline-block; background: #eff6ff; color: #2563eb; font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 9999px; border: 1px solid #bfdbfe; margin-bottom: 14px;">
-            ✨ ${heroBadge}
+            ${heroBadge}
           </div>
           <h1 style="font-size: 32px; color: #0f172a; margin: 0 0 12px 0; font-weight: 800; line-height: 1.25;">
             ${heroTitle}
@@ -150,7 +151,7 @@ for (const { pageId, langKey, slug } of pagesToPrerender) {
         <!-- Hero Age Calculator Card -->
         <section aria-label="${heroTitle}" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 20px; padding: 28px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); margin-bottom: 40px;">
           <h2 style="font-size: 20px; color: #1e293b; margin: 0 0 20px 0; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-            <span>⚡</span> ${t?.calculator?.title || heroTitle}
+            <span>⚡</span> ${pageData.calculator?.title || heroTitle}
           </h2>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 20px;">
             <div style="background: #f8fafc; padding: 16px; border-radius: 12px; border: 1px solid #e2e8f0;">
@@ -170,12 +171,12 @@ for (const { pageId, langKey, slug } of pagesToPrerender) {
 
           <!-- Breakdown Results Preview -->
           <div style="background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); border: 1px solid #bfdbfe; border-radius: 14px; padding: 20px;">
-            <div style="font-size: 13px; font-weight: 700; color: #1e40af; text-transform: uppercase; margin-bottom: 10px;">${t?.results?.mainResult || 'Exact Chronological Age'}</div>
+            <div style="font-size: 13px; font-weight: 700; color: #1e40af; text-transform: uppercase; margin-bottom: 10px;">${pageData.results?.mainTitle || 'Exact Chronological Age'}</div>
             <div style="font-size: 28px; font-weight: 800; color: #1e3a8a; margin-bottom: 14px;">
               28 <span style="font-size: 16px; font-weight: 600;">${yearsUnit}</span>, 10 <span style="font-size: 16px; font-weight: 600;">${monthsUnit}</span>, 23 <span style="font-size: 16px; font-weight: 600;">${daysUnit}</span>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; font-size: 12px;">
-              <div style="background: #ffffff; padding: 10px; border-radius: 8px; border: 1px solid #dbeafe;"><strong>1,507</strong> ${t?.units?.weeks || 'weeks'}</div>
+              <div style="background: #ffffff; padding: 10px; border-radius: 8px; border: 1px solid #dbeafe;"><strong>1,507</strong> ${pageData.results?.weeks || 'weeks'}</div>
               <div style="background: #ffffff; padding: 10px; border-radius: 8px; border: 1px solid #dbeafe;"><strong>10,554</strong> ${daysUnit}</div>
               <div style="background: #ffffff; padding: 10px; border-radius: 8px; border: 1px solid #dbeafe;"><strong>253,296</strong> ${hoursUnit}</div>
               <div style="background: #ffffff; padding: 10px; border-radius: 8px; border: 1px solid #dbeafe;"><strong>15,197,760</strong> ${minutesUnit}</div>
@@ -196,10 +197,10 @@ for (const { pageId, langKey, slug } of pagesToPrerender) {
         </section>
 
         <!-- 4-Step How It Works -->
-        ${content.howItWorks ? `
+        ${pageData.howItWorks ? `
         <section style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; margin-bottom: 40px;">
-          <h2 style="font-size: 22px; color: #0f172a; margin: 0 0 6px 0; font-weight: 800;">${content.howItWorks.title}</h2>
-          <p style="font-size: 14px; color: #64748b; margin: 0 0 24px 0;">${content.howItWorks.subtitle}</p>
+          <h2 style="font-size: 22px; color: #0f172a; margin: 0 0 6px 0; font-weight: 800;">${pageData.howItWorks.title}</h2>
+          <p style="font-size: 14px; color: #64748b; margin: 0 0 24px 0;">${pageData.howItWorks.subtitle}</p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
             ${steps.map(s => `
               <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px;">
@@ -213,10 +214,10 @@ for (const { pageId, langKey, slug } of pagesToPrerender) {
         ` : ''}
 
         <!-- Common Use Cases -->
-        ${content.useCases ? `
+        ${pageData.useCases ? `
         <section style="margin-bottom: 40px;">
-          <h2 style="font-size: 22px; color: #0f172a; margin: 0 0 6px 0; font-weight: 800;">${content.useCases.title}</h2>
-          <p style="font-size: 14px; color: #64748b; margin: 0 0 20px 0;">${content.useCases.subtitle}</p>
+          <h2 style="font-size: 22px; color: #0f172a; margin: 0 0 6px 0; font-weight: 800;">${pageData.useCases.title}</h2>
+          <p style="font-size: 14px; color: #64748b; margin: 0 0 20px 0;">${pageData.useCases.subtitle}</p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
             ${useCases.map(u => `
               <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px;">
@@ -228,11 +229,30 @@ for (const { pageId, langKey, slug } of pagesToPrerender) {
         </section>
         ` : ''}
 
+        <!-- 15 Specialized Tools Grid -->
+        ${pageData.toolsSection ? `
+        <section style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; margin-bottom: 40px;">
+          <h2 style="font-size: 22px; color: #0f172a; margin: 0 0 6px 0; font-weight: 800;">${pageData.toolsSection.title}</h2>
+          <p style="font-size: 14px; color: #64748b; margin: 0 0 20px 0;">${pageData.toolsSection.subtitle}</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+            ${tools.map(tool => `
+              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px;">
+                <h3 style="font-size: 16px; margin: 0 0 6px 0; font-weight: 700;">
+                  <a href="${langInfo.pathPrefix || ''}${tool.path}" style="color: #2563eb; text-decoration: none;">${tool.name}</a>
+                </h3>
+                <p style="font-size: 13px; color: #64748b; margin: 0 0 10px 0; line-height: 1.5;">${tool.desc}</p>
+                <a href="${langInfo.pathPrefix || ''}${tool.path}" style="font-size: 13px; font-weight: 700; color: #2563eb; text-decoration: none;">${pageData.toolsSection.openBtn} →</a>
+              </div>
+            `).join('')}
+          </div>
+        </section>
+        ` : ''}
+
         <!-- Localized FAQs -->
         ${faqs.length > 0 ? `
         <section style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px; margin-bottom: 40px;">
-          <h2 style="font-size: 22px; color: #0f172a; margin: 0 0 20px 0; font-weight: 800;">Frequently Asked Questions</h2>
-          <div style="display: flex; flex-col; gap: 16px;">
+          <h2 style="font-size: 22px; color: #0f172a; margin: 0 0 20px 0; font-weight: 800;">${pageData.faqsSection?.title || 'Frequently Asked Questions'}</h2>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
             ${faqs.map(faq => `
               <div style="border-bottom: 1px solid #f1f5f9; padding-bottom: 14px; margin-bottom: 14px;">
                 <h3 style="font-size: 15px; color: #1e293b; margin: 0 0 6px 0; font-weight: 700;">❓ ${faq.q}</h3>

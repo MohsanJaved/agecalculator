@@ -8,7 +8,6 @@ export default function LanguageSwitcher({ variant = 'header' }) {
   const { currentLang, equivalentUrls } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedTier, setSelectedTier] = useState('all'); // 'all' | '1' | '2' | '3'
   const dropdownRef = useRef(null);
 
   // Close dropdown on click outside
@@ -27,13 +26,10 @@ export default function LanguageSwitcher({ variant = 'header' }) {
 
   const currentLangObj = LANGUAGES[currentLang] || LANGUAGES.en;
 
-  // Filter languages based on tier and search query
+  // Filter languages based on search query
   const filteredLanguages = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
     return Object.entries(LANGUAGES).filter(([code, info]) => {
-      if (selectedTier !== 'all' && info.tier !== Number(selectedTier)) {
-        return false;
-      }
       if (!q) return true;
       return (
         info.name.toLowerCase().includes(q) ||
@@ -41,7 +37,7 @@ export default function LanguageSwitcher({ variant = 'header' }) {
         code.toLowerCase().includes(q)
       );
     });
-  }, [searchQuery, selectedTier]);
+  }, [searchQuery]);
 
   // Render Footer Layout: grouped by Tier 1, Tier 2, Tier 3 for clean accessibility & indexing
   if (variant === 'footer') {
@@ -197,38 +193,9 @@ export default function LanguageSwitcher({ variant = 'header' }) {
 
             {/* Filter Tabs */}
             <div className="flex items-center gap-1 pt-2 text-[10px] font-semibold">
-              <button
-                onClick={() => setSelectedTier('all')}
-                className={`px-2 py-0.5 rounded-md transition-colors ${
-                  selectedTier === 'all' ? 'bg-blue-600 text-white' : 'text-slate-500 hover:bg-slate-100'
-                }`}
-              >
+              <span className="px-2 py-0.5 rounded-md bg-blue-600 text-white">
                 All (33)
-              </button>
-              <button
-                onClick={() => setSelectedTier('1')}
-                className={`px-2 py-0.5 rounded-md transition-colors ${
-                  selectedTier === '1' ? 'bg-blue-600 text-white' : 'text-slate-500 hover:bg-slate-100'
-                }`}
-              >
-                Tier 1 (6)
-              </button>
-              <button
-                onClick={() => setSelectedTier('2')}
-                className={`px-2 py-0.5 rounded-md transition-colors ${
-                  selectedTier === '2' ? 'bg-blue-600 text-white' : 'text-slate-500 hover:bg-slate-100'
-                }`}
-              >
-                Tier 2 (11)
-              </button>
-              <button
-                onClick={() => setSelectedTier('3')}
-                className={`px-2 py-0.5 rounded-md transition-colors ${
-                  selectedTier === '3' ? 'bg-blue-600 text-white' : 'text-slate-500 hover:bg-slate-100'
-                }`}
-              >
-                Tier 3 (16)
-              </button>
+              </span>
             </div>
           </div>
 

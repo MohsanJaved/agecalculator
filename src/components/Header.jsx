@@ -20,7 +20,6 @@ import {
   Info
 } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
-import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Header() {
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
@@ -242,11 +241,8 @@ export default function Header() {
             </Link>
           </nav>
 
-          {/* RIGHT ACTION: LANGUAGE SWITCHER + CTA BUTTON & MOBILE TOGGLE */}
+          {/* RIGHT ACTION: CTA BUTTON & MOBILE TOGGLE */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Header Language Switcher Dropdown */}
-            <LanguageSwitcher variant="header" />
-
             <Link
               to={localizePath('/')}
               className="bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm px-3.5 sm:px-4 py-2 rounded-xl shadow-md shadow-blue-600/20 transition-all flex items-center gap-1.5 shrink-0"
@@ -273,13 +269,6 @@ export default function Header() {
       {/* MOBILE DRAWER NAVIGATION */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#002852] border-t border-blue-800 text-white max-h-[85vh] overflow-y-auto px-4 py-6 space-y-6 animate-in slide-in-from-top-4 duration-200">
-          
-          {/* Quick Language Selector in Mobile Drawer */}
-          <div className="p-3 bg-[#084d8c] rounded-xl border border-blue-400/20 space-y-2">
-            <span className="text-xs font-semibold text-yellow-300 block">Switch Language:</span>
-            <LanguageSwitcher variant="footer" />
-          </div>
-
           {/* Quick Action in Mobile Drawer */}
           <div className="p-3 bg-[#084d8c]/60 rounded-xl border border-blue-400/20 flex items-center justify-between">
             <span className="text-xs font-semibold text-blue-100">Need help or found a bug?</span>
